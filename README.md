@@ -1,2 +1,0 @@
-# billify
-#Invoice Generator
