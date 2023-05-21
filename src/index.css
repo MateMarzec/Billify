@@ -38,7 +38,7 @@ button:hover {
     box-shadow: var(--shadow-2);
 }
 
-button i {
+button svg {
     height: 20px;
     width: auto;
 }
@@ -52,6 +52,10 @@ button.primary:hover {
     background-color: var(--grass-1100);
 }
 
+button.primary svg *{
+    color: var(--primary-white);
+}
+
 button.secondary {
     background-color: var(--primary-white);
     color: var(--primary-black);
@@ -62,6 +66,10 @@ button.secondary:hover {
     background-color: var(--primary-black);
     color: var(--primary-white);
     box-shadow: var(--shadow-2);
+}
+
+button.secondary svg *{
+    color: var(--primary-black);
 }
 
 button.lg {
