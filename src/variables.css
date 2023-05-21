@@ -1,0 +1,48 @@
+:root {
+    --primary-white: #ffffff;
+    --primary-black: #000000;
+
+    --grey-100: #FCFCFC;
+    --grey-200: #F8F8F8;
+    --grey-300: #F3F3F3;
+    --grey-400: #EDEDED;
+    --grey-500: #E8E8E8;
+    --grey-600: #E2E2E2;
+    --grey-700: #DBDBDB;
+    --grey-800: #C7C7C7;
+    --grey-900: #8F8F8F;
+    --grey-1000: #858585;
+    --grey-1100: #6F6F6F;
+    --grey-1200: #171717;
+
+    --grass-100: #FBFEFB;
+    --grass-200: #F3FCF3;
+    --grass-300: #EBF9EB;
+    --grass-400: #DFF3DF;
+    --grass-500: #CEEBCF;
+    --grass-600: #B7DFBA;
+    --grass-700: #97CF9C;
+    --grass-800: #65BA75;
+    --grass-900: #46A758;
+    --grass-1000: #3D9A50;
+    --grass-1100: #297C3B;
+    --grass-1200: #1B311E;
+
+    --alpha-100: rgba(0, 0, 0, 0.02);
+    --alpha-200: rgba(0, 0, 0, 0.05);
+    --alpha-300: rgba(0, 0, 0, 0.08);
+    --alpha-400: rgba(0, 0, 0, 0.16);
+    --alpha-500: rgba(0, 0, 0, 0.24);
+    --alpha-600: rgba(0, 0, 0, 0.32);
+    --alpha-700: rgba(0, 0, 0, 0.48);
+    --alpha-800: rgba(0, 0, 0, 0.64);
+    --alpha-900: rgba(0, 0, 0, 0.72);
+    --alpha-1000: rgba(0, 0, 0, 0.80);
+    --alpha-1100: rgba(0, 0, 0, 0.92);
+    --alpha-1200: rgba(0, 0, 0, 1);
+
+    --shadow-1: 0px 4px 8px rgba(0, 0, 0, 0.08), 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 1px 2px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 8px 12px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.12);
+    --shadow-3: 0px 16px 24px rgba(0, 0, 0, 0.08), 0px 8px 16px rgba(0, 0, 0, 0.12);
+    --shadow-4: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 16px 24px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.12);
+}

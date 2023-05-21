@@ -1,69 +1,138 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* General */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--primary-black);
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    background-color: var(--primary-white);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+/* Buttons */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    gap: 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
+    border-radius: 2000px;
+    box-shadow: var(--shadow-1);
+    cursor: pointer;
+    transition: 0.25s ease all;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+}
+
+button i {
+    height: 20px;
+    width: auto;
+}
+
+button.primary {
+    background-color: var(--grass-1000);
+    color: var(--primary-white);
+}
+
+button.primary:hover {
+    background-color: var(--grass-1100);
+}
+
+button.secondary {
+    background-color: var(--primary-white);
+    color: var(--primary-black);
+    box-shadow: none;
+}
+
+button.secondary:hover {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    box-shadow: var(--shadow-2);
+}
+
+button.lg {
+    height: 40px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.014em;
+    padding: 0px, 16px, 0px, 16px;
+}
+
+button.lg svg {
+    height: 24px;
+}
+
+button.sm {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.006em;
+    padding: 0px, 8px, 0px, 8px;
+}
+
+button.sm svg {
+    height: 16px;
+}
+
+/* Inputs */
+label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
+}
+
+.input-wrapper{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    max-width: 300px;
+}
+
+.input-wrapper svg{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+}
+
+input{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:0px 16px 0px 48px;
+    border: 1px solid var(--alpha-500);
+    border-radius: 12px;
+    height: 38px;
+    transition: 0.25s ease all;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
+    color: var(--alpha-1200);
+}
+input::placeholder{
+    color: var(--alpha-500);
+}
+
+input:focus, input:active{
+    outline: none !important;
+    border: 1px solid var(--alpha-1200);
 }
