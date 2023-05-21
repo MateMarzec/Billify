@@ -32,21 +32,43 @@ nav a {
     flex-direction: row;
     align-items: center;
     gap: 4px;
+    cursor: pointer;
 }
-.leftPanel>div>svg{
+
+.leftPanel>div >p{
+    color: var(--alpha-800);
+}
+
+.leftPanel>div>svg {
     height: 16px;
     width: 16px;
 }
+.leftPanel>div>svg *{
+    color: var(--alpha-800);
+}
+
+.leftPanel>div:hover>p{
+    color: var(--alpha-1200);
+}
+.leftPanel>div:hover>svg *{
+    color: var(--alpha-1200);
+}
 
 .leftPanel a {
+    transition: 0.25s ease all;
     display: none;
+    color: var(--alpha-800);
+}
+
+.leftPanel a:hover{
+    color: var(--alpha-1200);
 }
 
 .leftPanel .logo {
     display: block;
 }
 
-.rightPanel{
+.rightPanel {
     display: flex;
     align-items: center;
 }

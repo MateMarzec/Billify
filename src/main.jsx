@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Articles from "./routes/Articles";
 import Docs from "./routes/Docs";
 import Generate from "./routes/Generate";
 import PageNotFound from "./routes/PageNotFound";
 import RootLayout from "./routes/RootLayout";
-import "./variables.css"
+import "./variables.css";
 import "./index.css";
 
 const router = createBrowserRouter([

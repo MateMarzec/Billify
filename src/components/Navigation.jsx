@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { ChevronDown, Menu, ArrowRight } from "feather-icons-react/build/IconComponents";
+import {
+  ChevronDown,
+  Menu,
+  ArrowRight,
+} from "feather-icons-react/build/IconComponents";
 import Logo from "/logo.svg";
 import classes from "./Navigation.module.css";
 
@@ -23,11 +27,13 @@ function Navigation() {
           </Link>
         </div>
         <div className={classes.rightPanel}>
-            <Link>
-                <button className="primary" type="button"> Generate Invoice <ArrowRight />
-                </button>
-            </Link>
-            <Menu />
+          <Link>
+            <button className="primary" type="button">
+              {" "}
+              Generate Invoice <ArrowRight />
+            </button>
+          </Link>
+          <Menu />
         </div>
       </div>
     </nav>

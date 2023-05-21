@@ -45,7 +45,7 @@ form {
 }
 
 @media (min-width: 992px) {
-aside {
+    aside {
         padding: 64px 64px;
     }
 
