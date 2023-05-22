@@ -12,6 +12,23 @@ body {
     background-color: var(--primary-white);
 }
 
+main {
+    width: 100%;
+    padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+    main {
+        padding: 0 32px;
+    }
+}
+
+@media (min-width: 992px) {
+    main {
+        padding: 0px 64px;
+    }
+}
+
 /* Buttons */
 button {
     height: 32px;

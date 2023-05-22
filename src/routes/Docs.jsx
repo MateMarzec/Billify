@@ -1,5 +1,11 @@
+import PostList from "../components/PostList";
+
 function Docs() {
-  return <></>;
+  return (
+    <main>
+      <PostList type="docs" />
+    </main>
+  );
 }
 
 export default Docs;

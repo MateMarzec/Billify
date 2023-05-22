@@ -6,6 +6,7 @@ import Articles from "./routes/Articles";
 import Docs from "./routes/Docs";
 import Generate from "./routes/Generate";
 import PageNotFound from "./routes/PageNotFound";
+import PostDetails from "./routes/PostDetails";
 import RootLayout from "./routes/RootLayout";
 import "./variables.css";
 import "./index.css";
@@ -24,8 +25,16 @@ const router = createBrowserRouter([
         element: <Articles />,
       },
       {
+        path: "/resources/articles/:postUrl",
+        element: <PostDetails />,
+      },
+      {
         path: "/resources/docs",
         element: <Docs />,
+      },
+      {
+        path: "/resources/docs/:postUrl",
+        element: <PostDetails />,
       },
       {
         path: "*",

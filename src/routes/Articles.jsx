@@ -1,8 +1,10 @@
+import PostList from "../components/PostList";
+
 function Articles() {
   return (
-    <>
-      
-    </>
+    <main>
+      <PostList type="articles" />
+    </main>
   );
 }
 

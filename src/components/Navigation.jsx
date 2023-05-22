@@ -22,7 +22,7 @@ function Navigation() {
             <p>Resources</p>
             <ChevronDown />
           </div>
-          <Link to="/">
+          <Link to="/contact">
             <p>Contact</p>
           </Link>
         </div>
