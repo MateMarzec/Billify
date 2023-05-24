@@ -28,7 +28,7 @@ function PostDetails() {
   const result = dataArray.find((item) => item.url === lastPart);
 
   return (
-    <main>
+    <main className={classes.postDetails}>
       <article className={classes.container}>
         <Link to={`/resources/${prop}`}>
           <ArrowLeft />

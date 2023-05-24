@@ -5,7 +5,7 @@ import classes from "./Footer.module.css";
 
 function Footer() {
   return (
-    <>
+    <div>
       <Newsletter />
       <footer>
         <div className={classes.container}>
@@ -22,7 +22,7 @@ function Footer() {
           <p className={classes.note}>©2023 Billify</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 export default Footer;

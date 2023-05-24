@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Articles from "./routes/Articles";
 import Docs from "./routes/Docs";
 import Generate from "./routes/Generate";
+import Home from "./routes/Home";
 import PageNotFound from "./routes/PageNotFound";
 import PostDetails from "./routes/PostDetails";
 import RootLayout from "./routes/RootLayout";
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/generate",
         element: <Generate />,

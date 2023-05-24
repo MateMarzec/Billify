@@ -12,6 +12,13 @@ body {
     background-color: var(--primary-white);
 }
 
+#root{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
 main {
     width: 100%;
     padding: 0 16px;
@@ -93,7 +100,7 @@ button.lg {
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.014em;
-    padding: 0px, 16px, 0px, 16px;
+    padding: 0px 16px 0px 16px;
 }
 
 button.lg svg {
@@ -104,7 +111,7 @@ button.sm {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.006em;
-    padding: 0px, 8px, 0px, 8px;
+    padding: 0px 8px 0px 8px;
 }
 
 button.sm svg {
@@ -123,7 +130,8 @@ label {
     width: fit-content;
     height: fit-content;
     position: relative;
-    max-width: 300px;
+    max-width: 360px;
+    width: 100%;
 }
 
 .input-wrapper svg {

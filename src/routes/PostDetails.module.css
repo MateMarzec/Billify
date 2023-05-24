@@ -7,14 +7,14 @@
     gap: 32px;
 }
 
-a{
+.postDetails a{
     width: fit-content;
 }
-a svg g{
+.postDetails a svg g{
     color: var(--primary-black);
 }
 
-h1 {
+.postDetails h1 {
     font-weight: 600;
     font-size: 36px;
     line-height: 42px;
@@ -42,7 +42,7 @@ h1 {
 }
 
 @media (min-width: 992px) {
-    h1 {
+    .postDetails h1 {
         font-size: 48px;
         line-height: 54px;
         letter-spacing: -0.022em;
