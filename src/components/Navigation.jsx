@@ -27,9 +27,8 @@ function Navigation() {
           </Link>
         </div>
         <div className={classes.rightPanel}>
-          <Link>
+          <Link to="/generate">
             <button className="primary" type="button">
-              {" "}
               Generate Invoice <ArrowRight />
             </button>
           </Link>
