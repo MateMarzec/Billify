@@ -1,13 +1,122 @@
+import { useState } from "react";
+import emailjs from "emailjs-com";
+import { Mail } from "feather-icons-react";
 import ContactUs from "../assets/payment.jpg";
 import classes from "./Contact.module.css";
+import { Send, User } from "feather-icons-react/build/IconComponents";
 
 function Contact() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessageBody] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: "Billify Contact Info",
+      message,
+    };
+
+    emailjs
+      .send(
+        "service_8yaldv7",
+        "template_e0f524n",
+        templateParams,
+        "5ACeaeNHitHr5ZX-K"
+      )
+      .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+
+    setSent(true);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleBodyChange = (e) => {
+    setMessageBody(e.target.value);
+  };
+
   return (
     <main>
       <div className={classes.container}>
         <section className={classes.leftSide}>
           <div className={classes.content}>
             <h1>Contact Us</h1>
+            {!sent ? (
+              <p>
+                Please feel free to contact us with your suggestions, feedback,
+                or any issues you would like to bring to our attention.
+              </p>
+            ) : (
+              <p>
+                Thanks for contacting us, we will try to get back to you as soon
+                as possible.
+              </p>
+            )}
+            {!sent ? (
+              <form onSubmit={handleSubmit}>
+                <>
+                  <label htmlFor="userName">Name</label>
+                  <div className="input-wrapper">
+                    <input
+                      type="text"
+                      id="userName"
+                      name="userName"
+                      placeholder="John Kowalski"
+                      value={name}
+                      onChange={handleNameChange}
+                      required
+                    />
+                    <User />
+                  </div>
+                  <label htmlFor="userEmail">Name</label>
+                  <div className="input-wrapper">
+                    <input
+                      type="email"
+                      id="userEmail"
+                      name="userEmail"
+                      placeholder="john@billify.com"
+                      value={email}
+                      onChange={handleEmailChange}
+                      required
+                    />
+                    <Mail />
+                  </div>
+                  <label htmlFor="messageBody">Message</label>
+                  <div className="input-wrapper">
+                    <textarea
+                      type="text"
+                      id="messageBody"
+                      name="messageBody"
+                      placeholder="Type your message"
+                      value={message}
+                      onChange={handleBodyChange}
+                      rows={3}
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="primary lg">
+                    Send <Send />
+                  </button>
+                </>
+              </form>
+            ) : (
+              <></>
+            )}
           </div>
         </section>
         <div className={classes.rightSide}>

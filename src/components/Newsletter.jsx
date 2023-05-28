@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Search } from "feather-icons-react";
 import classes from "./Newsletter.module.css";
+import { Mail } from "feather-icons-react/build/IconComponents";
 
 function Newsletter() {
   const [email, setEmail] = useState("");
@@ -53,7 +54,7 @@ function Newsletter() {
                   onChange={handleEmailChange}
                   required
                 />
-                <Search />
+                <Mail />
               </div>
               <button type="submit" className="primary lg">
                 Subscribe

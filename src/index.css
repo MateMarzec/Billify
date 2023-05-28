@@ -12,7 +12,7 @@ body {
     background-color: var(--primary-white);
 }
 
-#root{
+#root {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -118,10 +118,11 @@ button.sm svg {
     height: 16px;
 }
 
-button:disabled{
+button:disabled {
     box-shadow: none;
     background-color: var(--grey-800);
 }
+
 button:disabled:hover {
     cursor: default;
     background-color: var(--grey-800);
@@ -154,7 +155,8 @@ label {
     transform: translateY(-50%);
 }
 
-input {
+input,
+textarea {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -172,12 +174,21 @@ input {
     color: var(--alpha-1200);
 }
 
-input::placeholder {
+textarea{
+    padding: 8px 16px;
+    height: fit-content;
+    resize: none;
+}
+
+input::placeholder,
+textarea::placeholder {
     color: var(--alpha-500);
 }
 
 input:focus,
-input:active {
+input:active,
+textarea:focus,
+textarea:active {
     outline: none !important;
     border: 1px solid var(--alpha-1200);
 }
