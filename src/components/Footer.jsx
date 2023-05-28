@@ -7,7 +7,7 @@ function Footer() {
   return (
     <div>
       <Newsletter />
-      <footer>
+      <footer className={classes.footer}>
         <div className={classes.container}>
           <Link to="/">
             <img src={Logo} alt="Billify Logo" />

@@ -9,7 +9,7 @@ import classes from "./Navigation.module.css";
 
 function Navigation() {
   return (
-    <nav>
+    <nav className={classes.nav}>
       <div className={classes.container}>
         <div className={classes.leftPanel}>
           <Link to="/" className={classes.logo}>

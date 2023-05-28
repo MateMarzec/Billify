@@ -3,7 +3,7 @@ import classes from "./Newsletter.module.css";
 
 function Newsletter() {
   return (
-    <aside>
+    <aside className={classes.newsletter}>
       <div className={classes.container}>
         <p>
           Join <span>1,000+</span> other people

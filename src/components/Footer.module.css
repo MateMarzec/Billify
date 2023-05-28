@@ -1,4 +1,4 @@
-footer {
+.footer {
     background-color: var(--grey-300);
     width: 100%;
     padding: 0 16px;
@@ -15,16 +15,16 @@ footer {
     margin: 0 auto;
 }
 
-footer img {
+.footer img {
     width: 32px;
     height: auto;
 }
 
-footer a {
+.footer a {
     text-decoration: none;
 }
 
-footer p {
+.footer p {
     font-weight: 500;
     font-size: 16px;
     line-height: 22px;
@@ -38,17 +38,17 @@ footer p {
 }
 
 @media (min-width: 768px) {
-    footer {
+    .footer {
         padding: 0 32px;
     }
 }
 
 @media (min-width: 992px) {
-    footer {
+    .footer {
         padding: 0 64px;
     }
 
-    footer a {
+    .footer a {
         width: 300px;
         text-align: left;
     }

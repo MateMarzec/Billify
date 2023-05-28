@@ -1,4 +1,4 @@
-aside {
+.newsletter {
     background: linear-gradient(180deg, #FFFFFF 0%, #F3F3F3 100%);
     width: 100%;
     padding: 48px 16px;
@@ -14,7 +14,7 @@ aside {
     margin: 0 auto;
 }
 
-aside p {
+.newsletter p {
     font-weight: 600;
     font-size: 30px;
     line-height: 36px;
@@ -23,11 +23,11 @@ aside p {
     color: var(--grey-1200);
 }
 
-aside span {
+.newsletter span {
     color: var(--grass-1000);
 }
 
-form {
+.newsletter form {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -41,7 +41,7 @@ form {
 }
 
 @media (min-width: 768px) {
-    aside {
+    .newsletter {
         padding: 48px 32px;
     }
 }
@@ -57,7 +57,7 @@ form {
         gap: 0;
     }
 
-    aside p {
+    .newsletter p {
         font-size: 36px;
         line-height: 42px;
         letter-spacing: -0.022em;
@@ -65,7 +65,7 @@ form {
         text-align: left;
     }
 
-    form {
+    .newsletter form {
         flex-direction: row;
         max-width: unset;
     }
