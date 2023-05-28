@@ -22,6 +22,9 @@
     letter-spacing: -0.021em;
     color: var(--grey-1200);
 }
+.newsletter p:last-child{
+    text-align: right;
+}
 
 .newsletter span {
     color: var(--grass-1000);
@@ -40,6 +43,14 @@
     height: 40px;
 }
 
+.newsletterEmail .disabled:hover{
+    transform: none !important;
+    background-color: var(--grass-1000) !important;
+    cursor: default !important;
+    box-shadow: none !important;
+    color: red;
+}
+
 @media (min-width: 768px) {
     .newsletter {
         padding: 48px 32px;
@@ -47,7 +58,7 @@
 }
 
 @media (min-width: 992px) {
-    aside {
+    .newsletter {
         padding: 64px 64px;
     }
 

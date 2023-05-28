@@ -118,6 +118,17 @@ button.sm svg {
     height: 16px;
 }
 
+button:disabled{
+    box-shadow: none;
+    background-color: var(--grey-800);
+}
+button:disabled:hover {
+    cursor: default;
+    background-color: var(--grey-800);
+    transform: none;
+    box-shadow: none;
+}
+
 /* Inputs */
 label {
     font-weight: 500;
