@@ -1,7 +1,9 @@
 import Post from "./Post";
+import { Link } from "react-router-dom";
 import classes from "./PostList.module.css";
 import articlesList from "../assets/articles.json";
 import docsList from "../assets/docs.json";
+import { ArrowLeft } from "feather-icons-react/build/IconComponents";
 
 function PostList({ type }) {
   return (
@@ -30,20 +32,30 @@ function PostList({ type }) {
             body={post.Body}
           />
         ))}
-      {type === "articles" && articlesList.length && (
-        <div className={classes.empty}>
-          <p>
-            There are no {type === "articles" ? <>articles.</> : <>documents</>}
-            .
-          </p>
+      {type === "articles" && articlesList.length === 0 && (
+        <div className={classes.container}>
+          <h1>
+            There are no {type === "articles" ? <>articles</> : <>documents</>},
+            please come back later.
+          </h1>
+          <button className="primary lg">
+            <Link to="/">
+              <ArrowLeft /> Go Back
+            </Link>
+          </button>
         </div>
       )}
-      {type === "docs" && docsList.length && (
-        <div className={classes.empty}>
-          <p>
-            There are no {type === "articles" ? <>articles.</> : <>documents</>}
-            .
-          </p>
+      {type === "docs" && docsList.length === 0 && (
+        <div className={classes.container}>
+          <h1>
+            There are no {type === "articles" ? <>articles</> : <>documents</>},
+            please come back later.
+          </h1>
+          <button className="primary">
+            <Link to="/">
+              <ArrowLeft /> Go Back
+            </Link>
+          </button>
         </div>
       )}
     </div>

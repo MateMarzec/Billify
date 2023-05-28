@@ -12,7 +12,7 @@ function Post({ type, url, name, desc }) {
         <h3>{name}</h3>
         <p>{desc}</p>
       </div>
-      <button type="button" className="primary">
+      <button type="button" className="primary lg">
         <Link to={`/resources/${type}/${url}?prop=${type}`}>Read More</Link>
       </button>
     </article>

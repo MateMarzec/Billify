@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Articles from "./routes/Articles";
 import Docs from "./routes/Docs";
+import Contact from "./routes/Contact";
 import Generate from "./routes/Generate";
 import Home from "./routes/Home";
 import PageNotFound from "./routes/PageNotFound";
@@ -11,6 +12,7 @@ import PostDetails from "./routes/PostDetails";
 import RootLayout from "./routes/RootLayout";
 import "./variables.css";
 import "./index.css";
+
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/generate",

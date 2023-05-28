@@ -9,6 +9,10 @@
 
 .postDetails a{
     width: fit-content;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-black);
 }
 .postDetails a svg g{
     color: var(--primary-black);

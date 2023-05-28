@@ -31,7 +31,7 @@ function PostDetails() {
     <main className={classes.postDetails}>
       <article className={classes.container}>
         <Link to={`/resources/${prop}`}>
-          <ArrowLeft />
+          <ArrowLeft /> Go Back
         </Link>
         <div key={result.id}>
           {result && (

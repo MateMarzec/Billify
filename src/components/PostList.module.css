@@ -4,3 +4,30 @@
     flex-direction: column;
     margin: 0 auto;
 }
+.container h1{
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: -0.022em;
+    color: var(--primary-black);
+}
+
+.container > button{
+    margin: auto;
+}
+.container > button > a{
+    text-decoration: none;
+    color: var(--primary-white);
+    display: flex;
+    align-items: center;
+    gap: 4px
+}
+@media (min-width: 992px) {
+    .container h1 {
+        font-size: 48px;
+        line-height: 54px;
+        letter-spacing: -0.022em;
+    }
+}
