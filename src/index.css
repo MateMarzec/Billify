@@ -83,16 +83,22 @@ button.secondary {
     background-color: var(--primary-white);
     color: var(--primary-black);
     box-shadow: none;
+    border: 1px solid var(--alpha-400);
 }
 
 button.secondary:hover {
     background-color: var(--primary-black);
     color: var(--primary-white);
     box-shadow: var(--shadow-2);
+    border: 1px solid var(--primary-black);
 }
 
 button.secondary svg * {
     color: var(--primary-black);
+}
+
+button.secondary:hover svg * {
+    color: var(--primary-white);
 }
 
 button.lg {

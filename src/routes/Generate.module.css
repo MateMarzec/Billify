@@ -20,30 +20,64 @@
 .content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
 }
 
 .content h1 {
-    text-align: center;
     font-weight: 600;
     font-size: 36px;
     line-height: 42px;
     text-align: center;
     letter-spacing: -0.022em;
     color: var(--primary-black);
+    margin-bottom: 16px;
 }
 
 .content p {
-    text-align: center;
     font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.014em;
+    color: var(--alpha-800);
+    margin-bottom: 32px;
+    max-width: 512px;
+}
+
+.content form,
+.content button,
+.content form>div {
+    width: 100%;
+    max-width: 512px !important;
+}
+
+.content form label {
+    font-weight: 500;
     font-size: 16px;
     line-height: 22px;
-    text-align: center;
     letter-spacing: -0.013em;
-    color: var(--alpha-800);
+    color: var(--primary-black);
+    margin-bottom: 8px;
+}
+
+.content input {
+    margin-bottom: 16px;
+}
+
+.content textarea {
+    margin-bottom: 32px;
+}
+
+.content .btnGroup {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
 }
 
 .rightSide {
+    display: none;
     margin: 0 -16px;
     height: 100vw;
     position: relative;
@@ -51,12 +85,17 @@
     max-height: 520px;
 }
 
+
 @media (min-width: 1280px) {
     .container {
         flex-direction: row;
         justify-content: space-between;
         padding: 0;
         min-height: 600px;
+    }
+
+    .rightSide {
+        display: block;
     }
 
     .leftSide,
@@ -68,12 +107,18 @@
     }
 
     .leftSide {
-        padding: 148px 0;
+        padding: 0;
         gap: 32px;
     }
 
     .content {
-        gap: 24px;
+        align-items: flex-start;
+    }
+
+    .content form,
+    .content form>div {
+        width: 100%;
+        max-width: 384px !important;
     }
 
     .content h1 {
@@ -85,8 +130,19 @@
 
     .content p {
         text-align: left;
-        font-size: 16px;
-        line-height: 22px;
-        letter-spacing: -0.013em;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.014em;
+        max-width: 384px;
+    }
+    .content button{
+        width: fit-content;
+    }
+
+    .content .btnGroup {
+        margin-top: 0;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 16px;
     }
 }
