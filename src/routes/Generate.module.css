@@ -75,6 +75,11 @@
     margin-left: 8px;
 }
 
+.select > button{
+    margin-top: 16px;
+    width: fit-content;
+}
+
 .content textarea {
     margin-bottom: 32px;
 }

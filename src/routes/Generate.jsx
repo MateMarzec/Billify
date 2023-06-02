@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   PDFViewer,
   PDFDownloadLink,
@@ -17,6 +17,7 @@ import {
   Eye,
   Plus,
 } from "feather-icons-react/build/IconComponents";
+import Cookies from "js-cookie";
 import GenerateItemModal from "../components/GenerateItemModal";
 import GeneratePayeeModal from "../components/GeneratePayeeModal";
 import GeneratePayerModal from "../components/GeneratePayerModal";
@@ -24,7 +25,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import classes from "./Generate.module.css";
 
 function Generate() {
-  //States
+  // States
   const [formData, setFormData] = useState({
     title: "",
     date: "",
@@ -36,7 +37,6 @@ function Generate() {
     items: [],
     notes: "",
   });
-  let selectedItems = [];
   const today = new Date();
   const [dueDateEnabled, setDueDateEnabled] = useState(true);
   const [formDate, setFormDate] = useState(today);
@@ -48,7 +48,27 @@ function Generate() {
   const [payers, setPayers] = useState([]);
   const [items, setItems] = useState([]);
 
-  //Actions
+  useEffect(() => {
+    let savedPayees = [];
+    let savedPayers = [];
+    let savedItems = [];
+
+    if (Cookies.get("myPayees")) {
+      savedPayees = JSON.parse(Cookies.get("myPayees"));
+    }
+    if (Cookies.get("myPayers")) {
+      savedPayers = JSON.parse(Cookies.get("myPayers"));
+    }
+    if (Cookies.get("myItems")) {
+      savedItems = JSON.parse(Cookies.get("myItems"));
+    }
+
+    setPayees(savedPayees);
+    setPayers(savedPayers);
+    setItems(savedItems);
+  }, []);
+
+  // Actions
   const openPayeeDialog = (e) => {
     e.preventDefault();
     setIsPayeeOpen(true);
@@ -71,7 +91,7 @@ function Generate() {
     setItemOpen(false);
   };
 
-  //Handlers
+  // Handlers
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -86,7 +106,6 @@ function Generate() {
       setDueDate(today);
     }
     setDueDateEnabled(!dueDateEnabled);
-    dueDateEnabled(null);
   };
 
   const handleSubmitPayeeDialog = (e, payeeData) => {
@@ -97,6 +116,7 @@ function Generate() {
     };
     setPayees([...payees, newPayee]);
     setIsPayeeOpen(false);
+    updateCookies("myPayees", [...payees, newPayee]);
   };
 
   const handleSubmitPayerDialog = (e, payerData) => {
@@ -107,6 +127,7 @@ function Generate() {
     };
     setPayers([...payers, newPayer]);
     setIsPayerOpen(false);
+    updateCookies("myPayers", [...payers, newPayer]);
   };
 
   const handleSubmitItemDialog = (e, itemData) => {
@@ -115,8 +136,13 @@ function Generate() {
       value: itemData,
       label: itemData.itemName,
     };
-    setPayees([...items, newItem]);
+    setItems([...items, newItem]);
     setItemOpen(false);
+    updateCookies("myItems", [...items, newItem]);
+  };
+
+  const updateCookies = (type, data) => {
+    Cookies.set(type, JSON.stringify(data));
   };
 
   const handlePayeeSelectChange = (e) => {
@@ -136,13 +162,11 @@ function Generate() {
   };
 
   const handleItemsSelectChange = (e) => {
-    selectedItems = e.map((item) => item.value);
-    console.log(selectedItems);
+    const selectedItems = e.map((item) => item.value);
     setFormData({
       ...formData,
       items: selectedItems,
     });
-    console.log(formData.items)
   };
 
   //Render
@@ -151,7 +175,7 @@ function Generate() {
       <Page>
         <View>
           <Text>Title: {formData.title}</Text>
-          <Text>Content: {formData.content}</Text>
+          <Text>Content: {formData.notes}</Text>
         </View>
       </Page>
     </Document>
@@ -217,7 +241,7 @@ function Generate() {
                 </div>
               </div>
 
-              <div>
+              <div className={classes.select}>
                 <label htmlFor="payer">Payer Details</label>
                 <Select
                   onChange={handlePayerSelectChange}
@@ -234,7 +258,7 @@ function Generate() {
                 </button>
               </div>
 
-              <div>
+              <div className={classes.select}>
                 <label htmlFor="payee">Payee Details</label>
                 <Select
                   onChange={handlePayeeSelectChange}
@@ -251,13 +275,13 @@ function Generate() {
                 </button>
               </div>
 
-              <div>
+              <div className={classes.select}>
                 <label htmlFor="items">Items & Services</label>
                 <Select
                   onChange={handleItemsSelectChange}
                   classNamePrefix="select"
                   name="itemDetails"
-                  options={payees}
+                  options={items}
                   isMulti
                 />
                 <button
