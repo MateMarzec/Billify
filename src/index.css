@@ -22,6 +22,7 @@ body {
 main {
     width: 100%;
     padding: 0 16px;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {
