@@ -31,14 +31,14 @@ function Generate() {
     date: "",
     dueDate: "",
     payToName: "",
-    payToAddress: "",
+    payToAddress: {},
     billToName: "",
-    billToAddress: "",
+    billToAddress: {},
     items: [],
     notes: "",
   });
   const today = new Date();
-  const [dueDateEnabled, setDueDateEnabled] = useState(true);
+  const [dueDateEnabled, setDueDateEnabled] = useState(false);
   const [formDate, setFormDate] = useState(today);
   const [dueDate, setDueDate] = useState(today);
   const [isPayeeOpen, setIsPayeeOpen] = useState(false);
@@ -293,11 +293,11 @@ function Generate() {
               </div>
 
               <div>
-                <label htmlFor="content">Notes</label>
+                <label htmlFor="notes">Notes</label>
                 <div className="input-wrapper">
                   <textarea
-                    id="content"
-                    name="content"
+                    id="notes"
+                    name="notes"
                     value={formData.notes}
                     onChange={handleInputChange}
                     rows={4}
@@ -321,7 +321,40 @@ function Generate() {
         <div className={classes.rightSide}>
           <div className={classes.preview}>
             <div>
-              <PDFViewer>{renderPdf()}</PDFViewer>
+              <p>{formData.title}</p>
+              <p>{formData.date}</p>
+            </div>
+            <div>
+              <h3>Invoice From</h3>
+              <p>{formData.payToName}</p>
+              <div>
+                {formData.payToAddress &&
+                  Object.entries(formData.payToAddress).map(([key, obj]) => (
+                    <p key={key}>{obj}</p>
+                  ))}
+              </div>
+            </div>
+            <div>
+              <h3>Bill To</h3>
+              <p>{formData.billToName}</p>
+              <div>
+                {formData.billToAddress &&
+                  Object.entries(formData.billToAddress).map(([key, obj]) => (
+                    <p key={key}>{obj}</p>
+                  ))}
+              </div>
+              {formData.dueDate && <p>{formData.dueDate}</p>}
+            </div>
+            <div>
+              <h3>Items</h3>
+              {formData.items &&
+                Object.entries(formData.items).map(([key, obj]) => (
+                  <p key={key}>{obj}</p>
+                ))}
+            </div>
+            <div>
+              <h3>Notes</h3>
+              <p>{formData.notes}</p>
             </div>
           </div>
         </div>

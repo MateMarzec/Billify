@@ -60,22 +60,33 @@
     color: var(--primary-black);
 }
 
-.content form > div > div {
+.content form>div>div {
     margin-top: 8px;
+    max-width: unset;
 }
 
-.datePicker button{
+.datePicker button {
     display: none;
 }
 
-.datePicker input[type="checkbox"]{
+.datePicker input[type="checkbox"] {
     display: inline-block;
     width: auto;
     height: 100%;
     margin-left: 8px;
 }
 
-.select > button{
+
+.select>div>div {
+    padding: 0 16px;
+    height: fit-content;
+}
+
+.select input {
+    height: unset;
+}
+
+.select>button {
     margin-top: 16px;
     width: fit-content;
 }
@@ -92,7 +103,7 @@
     gap: 16px;
 }
 
-.content .btnGroup button a{
+.content .btnGroup button a {
     text-decoration: none;
     color: var(--primary-white);
     display: flex;
@@ -123,8 +134,22 @@
 
     .rightSide {
         display: block;
+        max-height: unset;
+        height: fit-content;
     }
-
+    .preview{
+        aspect-ratio: 2/3;
+    }
+    .preview iframe{
+        width: 100%;
+        height: 100%;
+    }
+    .preview iframe body{
+        margin: 0;
+    }
+    .preview viewer-toolbar{
+        display: none !important;
+    }
     .leftSide,
     .rightSide {
         width: 50%;

@@ -181,6 +181,8 @@ textarea {
     color: var(--alpha-1200);
 }
 
+
+
 textarea {
     padding: 8px 16px;
     height: fit-content;
@@ -188,14 +190,15 @@ textarea {
 }
 
 input::placeholder,
-textarea::placeholder {
+textarea::placeholder,
+.select__control::placeholder {
     color: var(--alpha-500);
 }
 
 input:focus,
 input:active,
 textarea:focus,
-textarea:active {
+textarea:active{
     outline: none !important;
     border: 1px solid var(--alpha-1200);
 }
@@ -222,4 +225,25 @@ textarea:active {
     max-width: 520px;
     box-shadow: var(--shadow-2);
     border-radius: 16px;
+}
+
+.select__control,
+.select__menu {
+    border: 1px solid var(--alpha-500) !important;
+    border-radius: 12px !important;
+    transition: 0.25s ease all !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    letter-spacing: -0.013em !important;
+    color: var(--alpha-1200) !important;
+}
+
+.select__control {
+    height: 38px !important;
+}
+
+.select__menu {
+    padding: 0 !important;
+    overflow: hidden;
 }
