@@ -26,16 +26,16 @@
     line-height: 42px;
     letter-spacing: -0.022em;
     color: var(--primary-black);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .content p {
     font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.014em;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
     color: var(--alpha-800);
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     max-width: 512px;
 }
 
@@ -46,7 +46,7 @@
     max-width: 512px !important;
 }
 
-.content form{
+.content form {
     display: flex;
     flex-direction: column;
     gap: 24px
@@ -58,11 +58,21 @@
     line-height: 22px;
     letter-spacing: -0.013em;
     color: var(--primary-black);
-    margin-bottom: 8px;
 }
 
-.content input {
-    margin-bottom: 16px;
+.content form > div > div {
+    margin-top: 8px;
+}
+
+.datePicker button{
+    display: none;
+}
+
+.datePicker input[type="checkbox"]{
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    margin-left: 8px;
 }
 
 .content textarea {
@@ -75,6 +85,13 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
+}
+
+.content .btnGroup button a{
+    text-decoration: none;
+    color: var(--primary-white);
+    display: flex;
+    gap: 8px
 }
 
 .rightSide {

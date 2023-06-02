@@ -4,19 +4,32 @@ import { useState } from "react";
 function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
   const [payeeData, setPayeeData] = useState({
     payToName: "",
-    addressFirst: "",
-    addressSecond: "",
-    addressPostCode: "",
-    addressCity: "",
-    addressCountry: "",
+    address: {
+      addressFirst: "",
+      addressSecond: "",
+      addressPostCode: "",
+      addressCity: "",
+      addressCountry: "",
+    },
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setPayeeData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name.startsWith("address.")) {
+      const addressName = name.split(".")[1];
+      setPayeeData((prevState) => ({
+        ...prevState,
+        address: {
+          ...prevState.address,
+          [addressName]: value,
+        },
+      }));
+    } else {
+      setPayeeData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   if (!isOpen) {
@@ -24,94 +37,105 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
   }
 
   return (
-    <dialog open>
-      <div>
-        <h2>Dialog Title</h2>
-        <p>Dialog content goes here.</p>
+    <>
+      <div className="modal-backdrop" onClick={onClose}></div>
+      <div className="modal-dialog">
+        <h2>Payee Details</h2>
+        <p>Please provide following details</p>
         <form>
           <div>
-            <label htmlFor="title1">Title</label>
+            <label htmlFor="payeeName">Full Name</label>
             <div className="input-wrapper">
               <input
                 type="text"
-                id="title1"
+                id="payeeName"
                 name="payToName"
                 value={payeeData.payToName}
                 onChange={handleInputChange}
+                required
               />
               <Edit2 />
             </div>
           </div>
           <div>
-            <label htmlFor="title2">Title</label>
+            <label htmlFor="firstLine">Address First Line</label>
             <div className="input-wrapper">
               <input
                 type="text"
-                id="title2"
-                name="addressFirst"
-                value={payeeData.addressFirst}
+                id="firstLine"
+                name="address.addressFirst"
+                value={payeeData.address.addressFirst}
+                onChange={handleInputChange}
+                required
+              />
+              <Edit2 />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="secondLine">Address Second Line</label>
+            <div className="input-wrapper">
+              <input
+                type="text"
+                id="secondLine"
+                name="address.addressSecond"
+                value={payeeData.address.addressSecond}
                 onChange={handleInputChange}
               />
               <Edit2 />
             </div>
           </div>
           <div>
-            <label htmlFor="title3">Title</label>
+            <label htmlFor="postCode">Post Code</label>
             <div className="input-wrapper">
               <input
                 type="text"
-                id="title3"
-                name="addressSecond"
-                value={payeeData.addressSecond}
+                id="postCode"
+                name="address.addressPostCode"
+                value={payeeData.address.addressPostCode}
                 onChange={handleInputChange}
+                required
               />
               <Edit2 />
             </div>
           </div>
           <div>
-            <label htmlFor="title4">Title</label>
+            <label htmlFor="city">City</label>
             <div className="input-wrapper">
               <input
                 type="text"
-                id="title4"
-                name="addressPostCode"
-                value={payeeData.addressPostCode}
+                id="city"
+                name="address.addressCity"
+                value={payeeData.address.addressCity}
                 onChange={handleInputChange}
+                required
               />
               <Edit2 />
             </div>
           </div>
           <div>
-            <label htmlFor="title5">Title</label>
+            <label htmlFor="country">Country</label>
             <div className="input-wrapper">
               <input
                 type="text"
-                id="title5"
-                name="addressCity"
-                value={payeeData.addressCity}
+                id="country"
+                name="address.addressCountry"
+                value={payeeData.address.addressCountry}
                 onChange={handleInputChange}
               />
               <Edit2 />
             </div>
           </div>
-          <div>
-            <label htmlFor="title5">Title</label>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                id="title5"
-                name="addressCountry"
-                value={payeeData.addressCountry}
-                onChange={handleInputChange}
-              />
-              <Edit2 />
-            </div>
+          <div className="btn-group">
+            <button className="primary" onClick={(e) => onSubmit(e, payeeData)}>
+              Submit Dialog
+            </button>
+            <button className="secondary" onClick={(e) => onClose(e)}>
+              Close Dialog
+            </button>
           </div>
-          <button onClick={(e) => onSubmit(e, payeeData)}>Submit Dialog</button>
-          <button onClick={(e) => onClose(e)}>Close Dialog</button>
         </form>
       </div>
-    </dialog>
+    </>
   );
 }
 

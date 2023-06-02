@@ -7,25 +7,48 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import classes from "./Generate.module.css";
+import DatePicker from "react-datepicker";
+import Select from "react-select";
 import {
   ArrowRight,
   Calendar,
+  Download,
   Edit2,
   Eye,
   Plus,
 } from "feather-icons-react/build/IconComponents";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import GenerateItemModal from "../components/GenerateItemModal";
 import GeneratePayeeModal from "../components/GeneratePayeeModal";
 import GeneratePayerModal from "../components/GeneratePayerModal";
-import GenerateItemModal from "../components/GenerateItemModal";
+import "react-datepicker/dist/react-datepicker.css";
+import classes from "./Generate.module.css";
 
 function Generate() {
+  //States
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    dueDate: "",
+    payToName: "",
+    payToAddress: "",
+    billToName: "",
+    billToAddress: "",
+    items: [],
+    notes: "",
+  });
+  let selectedItems = [];
+  const today = new Date();
+  const [dueDateEnabled, setDueDateEnabled] = useState(true);
+  const [formDate, setFormDate] = useState(today);
+  const [dueDate, setDueDate] = useState(today);
   const [isPayeeOpen, setIsPayeeOpen] = useState(false);
   const [isPayerOpen, setIsPayerOpen] = useState(false);
   const [isItemOpen, setItemOpen] = useState(false);
+  const [payees, setPayees] = useState([]);
+  const [payers, setPayers] = useState([]);
+  const [items, setItems] = useState([]);
 
+  //Actions
   const openPayeeDialog = (e) => {
     e.preventDefault();
     setIsPayeeOpen(true);
@@ -48,34 +71,7 @@ function Generate() {
     setItemOpen(false);
   };
 
-  const submitPayeeDialog = (e, payeeData) => {
-    e.preventDefault();
-    console.log(payeeData);
-  };
-
-  const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    dueDate: "",
-    payToName: "",
-    payToAddress: [],
-    billToName: "",
-    billToAddress: [],
-    items: [
-      {
-        itemName: "",
-        quantity: "",
-        rate: "",
-        currency: "",
-      },
-    ],
-    notes: "",
-  });
-  const today = new Date();
-  const [dueDateEnabled, setDueDateEnabled] = useState(true);
-  const [formDate, setFormDate] = useState(today);
-  const [dueDate, setDueDate] = useState(today);
-
+  //Handlers
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -93,6 +89,63 @@ function Generate() {
     dueDateEnabled(null);
   };
 
+  const handleSubmitPayeeDialog = (e, payeeData) => {
+    e.preventDefault();
+    const newPayee = {
+      value: payeeData,
+      label: payeeData.payToName,
+    };
+    setPayees([...payees, newPayee]);
+    setIsPayeeOpen(false);
+  };
+
+  const handleSubmitPayerDialog = (e, payerData) => {
+    e.preventDefault();
+    const newPayer = {
+      value: payerData,
+      label: payerData.billToName,
+    };
+    setPayers([...payers, newPayer]);
+    setIsPayerOpen(false);
+  };
+
+  const handleSubmitItemDialog = (e, itemData) => {
+    e.preventDefault();
+    const newItem = {
+      value: itemData,
+      label: itemData.itemName,
+    };
+    setPayees([...items, newItem]);
+    setItemOpen(false);
+  };
+
+  const handlePayeeSelectChange = (e) => {
+    setFormData({
+      ...formData,
+      payToName: e.value.payToName,
+      payToAddress: e.value.address,
+    });
+  };
+
+  const handlePayerSelectChange = (e) => {
+    setFormData({
+      ...formData,
+      billToName: e.value.billToName,
+      billToAddress: e.value.address,
+    });
+  };
+
+  const handleItemsSelectChange = (e) => {
+    selectedItems = e.map((item) => item.value);
+    console.log(selectedItems);
+    setFormData({
+      ...formData,
+      items: selectedItems,
+    });
+    console.log(formData.items)
+  };
+
+  //Render
   const renderPdf = () => (
     <Document>
       <Page>
@@ -121,12 +174,13 @@ function Generate() {
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
+                    placeholder="Enter Invoice Title"
                   />
                   <Edit2 />
                 </div>
               </div>
 
-              <div>
+              <div className={classes.datePicker}>
                 <label htmlFor="date">Date</label>
                 <div className="input-wrapper">
                   <DatePicker
@@ -141,7 +195,7 @@ function Generate() {
                 </div>
               </div>
 
-              <div>
+              <div className={classes.datePicker}>
                 <label htmlFor="dueDate">Due Date</label>
                 <input
                   type="checkbox"
@@ -165,7 +219,13 @@ function Generate() {
 
               <div>
                 <label htmlFor="payer">Payer Details</label>
-                {/* payer select */}
+                <Select
+                  onChange={handlePayerSelectChange}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  name="payeeDetails"
+                  options={payers}
+                />
                 <button
                   className="secondary sm"
                   onClick={(e) => openPayerDialog(e)}
@@ -176,7 +236,13 @@ function Generate() {
 
               <div>
                 <label htmlFor="payee">Payee Details</label>
-                {/* payee select */}
+                <Select
+                  onChange={handlePayeeSelectChange}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  name="payerDetails"
+                  options={payees}
+                />
                 <button
                   className="secondary sm"
                   onClick={(e) => openPayeeDialog(e)}
@@ -187,7 +253,13 @@ function Generate() {
 
               <div>
                 <label htmlFor="items">Items & Services</label>
-                {/* items select */}
+                <Select
+                  onChange={handleItemsSelectChange}
+                  classNamePrefix="select"
+                  name="itemDetails"
+                  options={payees}
+                  isMulti
+                />
                 <button
                   className="secondary sm"
                   onClick={(e) => openItemDialog(e)}
@@ -213,7 +285,7 @@ function Generate() {
             <div className={classes.btnGroup}>
               <button className="primary">
                 <PDFDownloadLink document={renderPdf()} fileName="invoice.pdf">
-                  Download PDF <ArrowRight />
+                  Download PDF <Download />
                 </PDFDownloadLink>
               </button>
               <button className="secondary">
@@ -234,10 +306,20 @@ function Generate() {
       <GeneratePayeeModal
         isOpen={isPayeeOpen}
         onClose={closeDialog}
-        onSubmit={submitPayeeDialog}
+        onSubmit={handleSubmitPayeeDialog}
       />
-      <GeneratePayerModal isOpen={isPayerOpen} onClose={closeDialog} />
-      <GenerateItemModal isOpen={isItemOpen} onClose={closeDialog} />
+
+      <GeneratePayerModal
+        isOpen={isPayerOpen}
+        onClose={closeDialog}
+        onSubmit={handleSubmitPayerDialog}
+      />
+
+      <GenerateItemModal
+        isOpen={isItemOpen}
+        onClose={closeDialog}
+        onSubmit={handleSubmitItemDialog}
+      />
     </main>
   );
 }

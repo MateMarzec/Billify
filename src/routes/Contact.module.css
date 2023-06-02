@@ -54,10 +54,10 @@
     line-height: 22px;
     letter-spacing: -0.013em;
     color: var(--primary-black);
-    margin-bottom: 8px;
 }
 
 .content input {
+    margin-top: 8px;
     margin-bottom: 16px;
 }
 
