@@ -1,4 +1,5 @@
 import { Edit2 } from "feather-icons-react";
+import { DollarSign, Hash } from "feather-icons-react/build/IconComponents";
 import { useState } from "react";
 
 function GenerateItemModal({ isOpen, onClose, onSubmit }) {
@@ -38,7 +39,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 required
               />
-              <Edit2 />
+              <Hash />
             </div>
           </div>
           <div>
@@ -52,7 +53,6 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 rows={3}
               />
-              <Edit2 />
             </div>
           </div>
           <div>
@@ -65,7 +65,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
                 value={itemData.itemPrice}
                 onChange={handleInputChange}
               />
-              <Edit2 />
+              <DollarSign />
             </div>
           </div>
           <div className="btn-group">

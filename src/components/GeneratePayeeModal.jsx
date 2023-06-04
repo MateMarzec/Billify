@@ -1,4 +1,5 @@
 import { Edit2 } from "feather-icons-react";
+import { Globe, Home, User } from "feather-icons-react/build/IconComponents";
 import { useState } from "react";
 
 function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
@@ -54,7 +55,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 required
               />
-              <Edit2 />
+              <User />
             </div>
           </div>
           <div>
@@ -68,7 +69,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 required
               />
-              <Edit2 />
+              <Home />
             </div>
           </div>
           <div>
@@ -81,7 +82,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 value={payeeData.address.addressSecond}
                 onChange={handleInputChange}
               />
-              <Edit2 />
+              <Home />
             </div>
           </div>
           <div>
@@ -95,7 +96,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 required
               />
-              <Edit2 />
+              <Home />
             </div>
           </div>
           <div>
@@ -109,7 +110,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 onChange={handleInputChange}
                 required
               />
-              <Edit2 />
+              <Home />
             </div>
           </div>
           <div>
@@ -122,7 +123,7 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
                 value={payeeData.address.addressCountry}
                 onChange={handleInputChange}
               />
-              <Edit2 />
+              <Globe />
             </div>
           </div>
           <div className="btn-group">

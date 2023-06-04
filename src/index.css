@@ -198,7 +198,7 @@ textarea::placeholder,
 input:focus,
 input:active,
 textarea:focus,
-textarea:active{
+textarea:active {
     outline: none !important;
     border: 1px solid var(--alpha-1200);
 }
@@ -225,6 +225,45 @@ textarea:active{
     max-width: 520px;
     box-shadow: var(--shadow-2);
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.modal-dialog h2 {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.021em;
+    color: var(--primary-black);
+}
+
+.modal-dialog p {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
+    color: var(--alpha-800);
+}
+
+.modal-dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.modal-dialog form .input-wrapper {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.modal-dialog .btn-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .select__control,
