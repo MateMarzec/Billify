@@ -26,9 +26,16 @@ import classes from "./Generate.module.css";
 
 function Generate() {
   // States
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
   const [formData, setFormData] = useState({
     title: "",
-    date: "",
+    date: formattedDate,
     dueDate: "",
     payToName: "",
     payToAddress: {},
@@ -37,10 +44,9 @@ function Generate() {
     items: [],
     notes: "",
   });
-  const today = new Date();
   const [dueDateEnabled, setDueDateEnabled] = useState(false);
   const [formDate, setFormDate] = useState(today);
-  const [dueDate, setDueDate] = useState(today);
+  const [dueDate, setDueDate] = useState(null);
   const [isPayeeOpen, setIsPayeeOpen] = useState(false);
   const [isPayerOpen, setIsPayerOpen] = useState(false);
   const [isItemOpen, setItemOpen] = useState(false);
@@ -99,11 +105,47 @@ function Generate() {
     });
   };
 
+  const handleDateChange = (date) => {
+    setFormDate(date);
+    setFormData({
+      ...formData,
+      date: date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+    });
+  };
+
+  const handleDueDateChange = (date) => {
+    setDueDate(date);
+    setFormData({
+      ...formData,
+      dueDate: date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+    });
+  };
+
   const handleCheckboxChange = () => {
     if (dueDateEnabled) {
       setDueDate(null);
+      setFormData({
+        ...formData,
+        dueDate: "",
+      });
     } else {
       setDueDate(today);
+      setFormData({
+        ...formData,
+        dueDate: today.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }),
+      });
     }
     setDueDateEnabled(!dueDateEnabled);
   };
@@ -213,7 +255,7 @@ function Generate() {
                     showYearDropdown
                     dropdownMode="select"
                     todayButton="Today"
-                    onChange={(date) => setFormDate(date)}
+                    onChange={(date) => handleDateChange(date)}
                   />
                   <Calendar />
                 </div>
@@ -234,7 +276,7 @@ function Generate() {
                     dropdownMode="select"
                     minDate={today}
                     todayButton="Today"
-                    onChange={(date) => setDueDate(date)}
+                    onChange={(date) => handleDueDateChange(date)}
                     disabled={!dueDateEnabled}
                   />
                   <Calendar />
