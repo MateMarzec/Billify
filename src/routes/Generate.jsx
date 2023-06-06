@@ -27,10 +27,10 @@ import classes from "./Generate.module.css";
 function Generate() {
   // States
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "2-digit",
+  const formattedDate = today.toLocaleDateString("en-GB", {
     day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
   });
 
   const [formData, setFormData] = useState({
@@ -109,10 +109,10 @@ function Generate() {
     setFormDate(date);
     setFormData({
       ...formData,
-      date: date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
+      date: date.toLocaleDateString("en-GB", {
         day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
       }),
     });
   };
@@ -121,10 +121,10 @@ function Generate() {
     setDueDate(date);
     setFormData({
       ...formData,
-      dueDate: date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
+      dueDate: date.toLocaleDateString("en-GB", {
         day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
       }),
     });
   };
@@ -140,10 +140,10 @@ function Generate() {
       setDueDate(today);
       setFormData({
         ...formData,
-        dueDate: today.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "2-digit",
+        dueDate: today.toLocaleDateString("en-GB", {
           day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
         }),
       });
     }
@@ -250,6 +250,7 @@ function Generate() {
                 <label htmlFor="date">Date</label>
                 <div className="input-wrapper">
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     selected={formDate}
                     showMonthDropdown
                     showYearDropdown
@@ -270,6 +271,7 @@ function Generate() {
                 />
                 <div className="input-wrapper">
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     selected={dueDate}
                     showMonthDropdown
                     showYearDropdown
@@ -281,23 +283,6 @@ function Generate() {
                   />
                   <Calendar />
                 </div>
-              </div>
-
-              <div className={classes.select}>
-                <label htmlFor="payer">Payer Details</label>
-                <Select
-                  onChange={handlePayerSelectChange}
-                  className="basic-single"
-                  classNamePrefix="select"
-                  name="payeeDetails"
-                  options={payers}
-                />
-                <button
-                  className="secondary sm"
-                  onClick={(e) => openPayerDialog(e)}
-                >
-                  Add New Payer <Plus />
-                </button>
               </div>
 
               <div className={classes.select}>
@@ -314,6 +299,23 @@ function Generate() {
                   onClick={(e) => openPayeeDialog(e)}
                 >
                   Add New Payee <Plus />
+                </button>
+              </div>
+
+              <div className={classes.select}>
+                <label htmlFor="payer">Payer Details</label>
+                <Select
+                  onChange={handlePayerSelectChange}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  name="payeeDetails"
+                  options={payers}
+                />
+                <button
+                  className="secondary sm"
+                  onClick={(e) => openPayerDialog(e)}
+                >
+                  Add New Payer <Plus />
                 </button>
               </div>
 
@@ -363,41 +365,66 @@ function Generate() {
         <div className={classes.rightSide}>
           <div className={classes.preview}>
             <div>
-              <p>{formData.title}</p>
+              {formData.title ? (
+                <h2>{formData.title}</h2>
+              ) : (
+                <h2>Invoice Title</h2>
+              )}
               <p>{formData.date}</p>
             </div>
             <div>
-              <h3>Invoice From</h3>
-              <p>{formData.payToName}</p>
+              <h3>Invoice From:</h3>
+              {formData.payToName ? (
+                <p>{formData.payToName}</p>
+              ) : (
+                <p>Full Name</p>
+              )}
               <div>
-                {formData.payToAddress &&
+                {Object.keys(formData.payToAddress).length === 0 ? (
+                  <p>Address</p>
+                ) : (
                   Object.entries(formData.payToAddress).map(([key, obj]) => (
                     <p key={key}>{obj}</p>
-                  ))}
+                  ))
+                )}
               </div>
             </div>
             <div>
-              <h3>Bill To</h3>
-              <p>{formData.billToName}</p>
+              <h3>Bill To:</h3>
+              {formData.billToName ? (
+                <p>{formData.billToName}</p>
+              ) : (
+                <p>Full Name</p>
+              )}
               <div>
-                {formData.billToAddress &&
+                {Object.keys(formData.billToAddress).length === 0 ? (
+                  <p>Address</p>
+                ) : (
                   Object.entries(formData.billToAddress).map(([key, obj]) => (
                     <p key={key}>{obj}</p>
-                  ))}
+                  ))
+                )}
               </div>
-              {formData.dueDate && <p>{formData.dueDate}</p>}
+              {formData.dueDate && <p>Due: {formData.dueDate}</p>}
             </div>
             <div>
-              <h3>Items</h3>
-              {formData.items &&
-                Object.entries(formData.items).map(([key, obj]) => (
-                  <p key={key}>{obj}</p>
-                ))}
+              <h3>Items:</h3>
+              {Object.keys(formData.items).length === 0 ? (
+                <p>No Items</p>
+              ) : (
+                Object.values(formData.items).map((item, index) => (
+                  <p key={index}>
+                    {item.itemName}, {item.itemDescription}, ${item.itemPrice}
+                  </p>
+                ))
+              )}
             </div>
-            <div>
-              <h3>Notes</h3>
-              <p>{formData.notes}</p>
-            </div>
+            {formData.notes && (
+              <div>
+                <h3>Notes:</h3>
+                <p>{formData.notes}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

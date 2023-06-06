@@ -41,7 +41,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
     <>
       <div className="modal-backdrop" onClick={onClose}></div>
       <div className="modal-dialog">
-        <h2>payer Details</h2>
+        <h2>Payer Details</h2>
         <p>Please provide following details</p>
         <form>
           <div>

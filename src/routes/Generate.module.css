@@ -127,15 +127,14 @@
         justify-content: space-between;
         min-height: 600px;
         padding: 64px 0;
+        gap: 128px;
     }
 
     .rightSide {
         display: block;
         height: fit-content;
     }
-    .preview{
-        aspect-ratio: 2/3;
-    }
+
     .leftSide,
     .rightSide {
         width: 50%;
@@ -183,4 +182,56 @@
         justify-content: flex-start;
         gap: 16px;
     }
+    .btnGroup button:last-child{
+        display: none;
+    }
+
+    .preview {
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        aspect-ratio: 210/297;
+        overflow-y: scroll;
+    }
+
+    .preview::-webkit-scrollbar {
+        display: none;
+    }
+
+    .preview h2 {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -0.021em;
+        color: var(--primary-black);
+    }
+
+    .preview h3 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.017em;
+        color: var(--primary-black);
+    }
+
+    .preview p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -0.013em;
+        color: var(--alpha-800);
+    }
+
+    .preview div:first-child {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .preview div:first-child p {
+        color: var(--alpha-600);
+    }
+
+
 }

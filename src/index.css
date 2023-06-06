@@ -232,6 +232,10 @@ textarea:active {
     overflow: scroll;
 }
 
+.modal-dialog::-webkit-scrollbar {
+    display: none;
+}
+
 .modal-dialog h2 {
     font-weight: 700;
     font-size: 30px;
