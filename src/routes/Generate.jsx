@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import classNames from "classnames";
 import {
-  PDFViewer,
   PDFDownloadLink,
   Document,
   Page,
@@ -10,12 +10,12 @@ import {
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import {
-  ArrowRight,
   Calendar,
   Download,
   Edit2,
   Eye,
   Plus,
+  X,
 } from "feather-icons-react/build/IconComponents";
 import Cookies from "js-cookie";
 import GenerateItemModal from "../components/GenerateItemModal";
@@ -53,6 +53,7 @@ function Generate() {
   const [payees, setPayees] = useState([]);
   const [payers, setPayers] = useState([]);
   const [items, setItems] = useState([]);
+  const [isPreviewOpen, setPreviewOpen] = useState(false);
 
   useEffect(() => {
     let savedPayees = [];
@@ -211,6 +212,14 @@ function Generate() {
     });
   };
 
+  const handleOpenPreview = () => {
+    setPreviewOpen(true);
+  };
+
+  const handleClosePreview = () => {
+    setPreviewOpen(false);
+  };
+
   //Render
   const renderPdf = () => (
     <Document>
@@ -356,14 +365,21 @@ function Generate() {
                   Download PDF <Download />
                 </PDFDownloadLink>
               </button>
-              <button className="secondary">
+              <button className="secondary" onClick={() => handleOpenPreview()}>
                 Preview <Eye />
               </button>
             </div>
           </div>
         </section>
-        <div className={classes.rightSide}>
+        <section
+          className={classNames(classes.rightSide, {
+            [classes.rightSideOpen]: isPreviewOpen,
+          })}
+        >
           <div className={classes.preview}>
+            <span onClick={() => handleClosePreview()}>
+              <X />
+            </span>
             <div>
               {formData.title ? (
                 <h2>{formData.title}</h2>
@@ -426,7 +442,7 @@ function Generate() {
               </div>
             )}
           </div>
-        </div>
+        </section>
       </div>
 
       <GeneratePayeeModal

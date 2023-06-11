@@ -14,6 +14,80 @@
     flex-direction: column;
 }
 
+.rightSide {
+    display: none;
+    position: fixed;
+    background-color: var(--alpha-800);
+    top: 0;
+    border: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+}
+.rightSideOpen{
+    display: block;
+}
+
+.preview {
+    width: calc(100vw - 32px);
+    background: var(--primary-white);
+    max-width: 520px;
+    aspect-ratio: 210/297;
+    overflow-y: scroll;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.preview::-webkit-scrollbar {
+    display: none;
+}
+.preview > span{
+    display: flex;
+    justify-content: flex-end;
+    color: var(--alpha-800);
+}
+
+.preview h2 {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.021em;
+    color: var(--primary-black);
+}
+
+.preview h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.017em;
+    color: var(--primary-black);
+}
+
+.preview p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
+    color: var(--alpha-800);
+}
+
+.preview div:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.preview div:first-child p {
+    color: var(--alpha-600);
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -110,13 +184,6 @@
     gap: 8px
 }
 
-.rightSide {
-    display: none;
-    position: relative;
-    background-color: var(--primary-white);
-}
-
-
 @media (min-width: 1280px) {
     .generateWrapper {
         background: linear-gradient(90deg, var(--primary-white) 50%, var(--grass-300) 50%);
@@ -133,6 +200,8 @@
     .rightSide {
         display: block;
         height: fit-content;
+        position: relative;
+        background-color: var(--primary-white);
     }
 
     .leftSide,
@@ -182,20 +251,29 @@
         justify-content: flex-start;
         gap: 16px;
     }
-    .btnGroup button:last-child{
+
+    .btnGroup button:last-child {
         display: none;
     }
 
     .preview {
+        width: 100%;
+        max-width: unset;
         padding: 32px;
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 24px;
-        aspect-ratio: 210/297;
-        overflow-y: scroll;
+        transform: unset;
+        top: unset;
+        left: unset;
     }
 
     .preview::-webkit-scrollbar {
+        display: none;
+    }
+
+    .preview>span {
         display: none;
     }
 
@@ -232,6 +310,4 @@
     .preview div:first-child p {
         color: var(--alpha-600);
     }
-
-
 }
