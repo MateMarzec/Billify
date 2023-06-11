@@ -20,6 +20,7 @@ import {
   X,
 } from "feather-icons-react/build/IconComponents";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 //Components
 import GenerateItemModal from "../components/GenerateItemModal";
@@ -29,6 +30,7 @@ import ModifyDetails from "../components/ModifyDetails";
 
 //CSS
 import "react-datepicker/dist/react-datepicker.css";
+import "react-toastify/dist/ReactToastify.css";
 import classes from "./Generate.module.css";
 
 function Generate() {
@@ -179,35 +181,86 @@ function Generate() {
 
   const handleSubmitPayeeDialog = (e, payeeData) => {
     e.preventDefault();
-    const newPayee = {
-      value: payeeData,
-      label: payeeData.payToName,
-    };
-    setPayees([...payees, newPayee]);
-    setIsPayeeOpen(false);
-    updateCookies("myPayees", [...payees, newPayee]);
+    if (
+      !payeeData.payToName ||
+      !payeeData.address.addressFirst ||
+      !payeeData.address.addressCity ||
+      !payeeData.address.addressPostCode ||
+      !payeeData.address.addressCountry
+    ) {
+      toast.error("Please fill out all required inputs.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      const newPayee = {
+        value: payeeData,
+        label: payeeData.payToName,
+      };
+      setPayees([...payees, newPayee]);
+      setIsPayeeOpen(false);
+      updateCookies("myPayees", [...payees, newPayee]);
+    }
   };
 
   const handleSubmitPayerDialog = (e, payerData) => {
     e.preventDefault();
-    const newPayer = {
-      value: payerData,
-      label: payerData.billToName,
-    };
-    setPayers([...payers, newPayer]);
-    setIsPayerOpen(false);
-    updateCookies("myPayers", [...payers, newPayer]);
+    if (
+      !payerData.billToName ||
+      !payerData.address.addressFirst ||
+      !payerData.address.addressCity ||
+      !payerData.address.addressPostCode ||
+      !payerData.address.addressCountry
+    ) {
+      toast.error("Please fill out all required inputs.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      const newPayer = {
+        value: payerData,
+        label: payerData.billToName,
+      };
+      setPayers([...payers, newPayer]);
+      setIsPayerOpen(false);
+      updateCookies("myPayers", [...payers, newPayer]);
+    }
   };
 
   const handleSubmitItemDialog = (e, itemData) => {
     e.preventDefault();
-    const newItem = {
-      value: itemData,
-      label: itemData.itemName,
-    };
-    setItems([...items, newItem]);
-    setItemOpen(false);
-    updateCookies("myItems", [...items, newItem]);
+    if (!itemData.itemName || !itemData.itemPrice) {
+      toast.error("Please fill out all required inputs.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      const newItem = {
+        value: itemData,
+        label: itemData.itemName,
+      };
+      setItems([...items, newItem]);
+      setItemOpen(false);
+      updateCookies("myItems", [...items, newItem]);
+    }
   };
 
   const handleItemsRemove = (dataType, dataToRemove) => {
@@ -309,6 +362,7 @@ function Generate() {
                     value={formData.title}
                     onChange={handleInputChange}
                     placeholder="Enter Invoice Title"
+                    maxLength={30}
                   />
                   <Edit2 />
                 </div>
@@ -437,7 +491,8 @@ function Generate() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     rows={4}
-                    placeholder="Notes - any relevant information such as payment methods etc."
+                    maxLength={200}
+                    placeholder="Notes - any relevant information such as payment methods etc. (Max 200 characters)"
                   />
                 </div>
               </div>
@@ -553,6 +608,19 @@ function Generate() {
         dataToModify={dataToModify}
         onRemove={handleItemsRemove}
         onQuantityUpdate={handleQuantityUpdate}
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
       />
     </main>
   );

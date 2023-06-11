@@ -45,7 +45,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details</p>
         <form>
           <div>
-            <label htmlFor="payerName">Full Name</label>
+            <label htmlFor="payerName">Full Name<span>*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -59,7 +59,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="firstLine">Address First Line</label>
+            <label htmlFor="firstLine">Address First Line<span>*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -86,7 +86,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="postCode">Post Code</label>
+            <label htmlFor="postCode">Post Code<span>*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -100,7 +100,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">City<span>*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -114,7 +114,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="country">Country</label>
+            <label htmlFor="country">Country<span>*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
