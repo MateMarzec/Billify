@@ -84,6 +84,8 @@ function Generate() {
     setItems(savedItems);
   }, []);
 
+  useEffect(() => {}, [formData.items]);
+
   // Actions
   const openPayeeDialog = (e) => {
     e.preventDefault();
@@ -225,7 +227,21 @@ function Generate() {
     setModifyOpen(false);
   };
 
-  const handleQuantityUpdate = () => {};
+  const handleQuantityUpdate = (itemLabel, newQuantity) => {
+    setFormData((prevFormData) => {
+      const updatedData = prevFormData.items.map((item) => {
+        if (item.itemName === itemLabel) {
+          return { ...item, itemQuantity: newQuantity };
+        }
+        return item;
+      });
+
+      return {
+        ...prevFormData,
+        items: updatedData,
+      };
+    });
+  };
 
   const updateCookies = (type, data) => {
     Cookies.set(type, JSON.stringify(data));
@@ -497,7 +513,8 @@ function Generate() {
               ) : (
                 Object.values(formData.items).map((item, index) => (
                   <p key={index}>
-                    {item.itemName}, {item.itemDescription}, ${item.itemPrice}
+                    {item.itemName}, {item.itemDescription}, ${item.itemPrice},
+                    {item.itemQuantity}, {item.itemPrice * item.itemQuantity}
                   </p>
                 ))
               )}

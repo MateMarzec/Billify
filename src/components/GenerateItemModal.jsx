@@ -7,6 +7,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     itemName: "",
     itemDescription: "",
     itemPrice: "",
+    itemQuantity: 1,
   });
 
   const handleInputChange = (e) => {

@@ -27,8 +27,15 @@ function ModifyDetails({
           {modifyData.length > 1 && (
             <>
               {Object.entries(modifyData[1]).map(([key, obj]) => (
-                <div key={obj.label}>
+                <div key={key}>
                   <p>{obj.label}</p>
+                  {dataToModify[0] === "Items" && (
+                    <input
+                    type="number"
+                    name={obj.label}
+                    onChange={(e) => onQuantityUpdate(obj.label, e.target.value)}
+                    />
+                  )}
                   <span onClick={() => onRemove(modifyData[0], obj.label)}>
                     <X />
                   </span>
