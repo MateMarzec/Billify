@@ -1,3 +1,4 @@
+//Libraries
 import { useState, useEffect } from "react";
 import classNames from "classnames";
 import {
@@ -14,13 +15,19 @@ import {
   Download,
   Edit2,
   Eye,
+  Minus,
   Plus,
   X,
 } from "feather-icons-react/build/IconComponents";
 import Cookies from "js-cookie";
+
+//Components
 import GenerateItemModal from "../components/GenerateItemModal";
 import GeneratePayeeModal from "../components/GeneratePayeeModal";
 import GeneratePayerModal from "../components/GeneratePayerModal";
+import ModifyDetails from "../components/ModifyDetails";
+
+//CSS
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./Generate.module.css";
 
@@ -50,9 +57,11 @@ function Generate() {
   const [isPayeeOpen, setIsPayeeOpen] = useState(false);
   const [isPayerOpen, setIsPayerOpen] = useState(false);
   const [isItemOpen, setItemOpen] = useState(false);
+  const [isModifyOpen, setModifyOpen] = useState(false);
   const [payees, setPayees] = useState([]);
   const [payers, setPayers] = useState([]);
   const [items, setItems] = useState([]);
+  const [dataToModify, setDataToModify] = useState();
   const [isPreviewOpen, setPreviewOpen] = useState(false);
 
   useEffect(() => {
@@ -91,11 +100,26 @@ function Generate() {
     setItemOpen(true);
   };
 
+  const openModifyDetails = (e, dataType) => {
+    e.preventDefault();
+
+    if (dataType === "Payees") {
+      setDataToModify(["Payees", [...payees]]);
+    } else if (dataType === "Payers") {
+      setDataToModify(["Payers", [...payers]]);
+    } else if (dataType === "Items") {
+      setDataToModify(["Items", [...items]]);
+    }
+
+    setModifyOpen(true);
+  };
+
   const closeDialog = (e) => {
     e.preventDefault();
     setIsPayeeOpen(false);
     setIsPayerOpen(false);
     setItemOpen(false);
+    setModifyOpen(false);
   };
 
   // Handlers
@@ -183,6 +207,25 @@ function Generate() {
     setItemOpen(false);
     updateCookies("myItems", [...items, newItem]);
   };
+
+  const handleItemsRemove = (dataType, dataToRemove) => {
+    if (dataType === "Payees") {
+      const updatedData = payees.filter((item) => item.label !== dataToRemove);
+      setPayees([...updatedData]);
+      updateCookies("myPayees", [...updatedData]);
+    } else if (dataType === "Payers") {
+      const updatedData = payers.filter((item) => item.label !== dataToRemove);
+      setPayers([...updatedData]);
+      updateCookies("myPayers", [...updatedData]);
+    } else if (dataType === "Items") {
+      const updatedData = items.filter((item) => item.label !== dataToRemove);
+      setItems([...updatedData]);
+      updateCookies("myItems", [...updatedData]);
+    }
+    setModifyOpen(false);
+  };
+
+  const handleQuantityUpdate = () => {};
 
   const updateCookies = (type, data) => {
     Cookies.set(type, JSON.stringify(data));
@@ -309,6 +352,14 @@ function Generate() {
                 >
                   Add New Payee <Plus />
                 </button>
+                {payees.length > 0 && (
+                  <button
+                    className="secondary sm"
+                    onClick={(e) => openModifyDetails(e, "Payees")}
+                  >
+                    Remove Payees <Minus />
+                  </button>
+                )}
               </div>
 
               <div className={classes.select}>
@@ -326,6 +377,14 @@ function Generate() {
                 >
                   Add New Payer <Plus />
                 </button>
+                {payers.length > 0 && (
+                  <button
+                    className="secondary sm"
+                    onClick={(e) => openModifyDetails(e, "Payers")}
+                  >
+                    Remove Payers <Minus />
+                  </button>
+                )}
               </div>
 
               <div className={classes.select}>
@@ -343,6 +402,14 @@ function Generate() {
                 >
                   Add New Item or Service <Plus />
                 </button>
+                {items.length > 0 && (
+                  <button
+                    className="secondary sm"
+                    onClick={(e) => openModifyDetails(e, "Items")}
+                  >
+                    Remove or Change Quantity
+                  </button>
+                )}
               </div>
 
               <div>
@@ -461,6 +528,14 @@ function Generate() {
         isOpen={isItemOpen}
         onClose={closeDialog}
         onSubmit={handleSubmitItemDialog}
+      />
+
+      <ModifyDetails
+        isOpen={isModifyOpen}
+        onClose={closeDialog}
+        dataToModify={dataToModify}
+        onRemove={handleItemsRemove}
+        onQuantityUpdate={handleQuantityUpdate}
       />
     </main>
   );
