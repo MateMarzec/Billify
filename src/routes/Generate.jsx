@@ -498,11 +498,13 @@ function Generate() {
               </div>
             </form>
             <div className={classes.btnGroup}>
-              <button className="primary">
+              {formData.title.length > 0 && formData.payToName.length > 0 && formData.billToName.length > 0 && formData.items.length > 0  && (
+                <button className="primary">
                 <PDFDownloadLink document={renderPdf()} fileName="invoice.pdf">
                   Download PDF <Download />
                 </PDFDownloadLink>
               </button>
+              )}
               <button className="secondary" onClick={() => handleOpenPreview()}>
                 Preview <Eye />
               </button>
