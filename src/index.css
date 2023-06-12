@@ -137,6 +137,14 @@ button:disabled:hover {
     box-shadow: none;
 }
 
+.Toastify button{
+    box-shadow: none;
+}
+.Toastify button:hover{
+    box-shadow: none;
+    transform: none;
+}
+
 /* Inputs */
 label {
     font-weight: 500;

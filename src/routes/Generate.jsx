@@ -20,7 +20,7 @@ import {
   X,
 } from "feather-icons-react/build/IconComponents";
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 //Components
 import GenerateItemModal from "../components/GenerateItemModal";
@@ -199,13 +199,29 @@ function Generate() {
         theme: "colored",
       });
     } else {
-      const newPayee = {
-        value: payeeData,
-        label: payeeData.payToName,
-      };
-      setPayees([...payees, newPayee]);
-      setIsPayeeOpen(false);
-      updateCookies("myPayees", [...payees, newPayee]);
+      const isExistingPayee = payees.some(
+        (payee) => payee.label === payeeData.payToName
+      );
+      if (isExistingPayee) {
+        toast.error("There is already existing payee with the same name.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const newPayee = {
+          value: payeeData,
+          label: payeeData.payToName,
+        };
+        setPayees([...payees, newPayee]);
+        setIsPayeeOpen(false);
+        updateCookies("myPayees", [...payees, newPayee]);
+      }
     }
   };
 
@@ -229,13 +245,29 @@ function Generate() {
         theme: "colored",
       });
     } else {
-      const newPayer = {
-        value: payerData,
-        label: payerData.billToName,
-      };
-      setPayers([...payers, newPayer]);
-      setIsPayerOpen(false);
-      updateCookies("myPayers", [...payers, newPayer]);
+      const isExistingPayer = payers.some(
+        (payer) => payer.label === payerData.billToName
+      );
+      if (isExistingPayer) {
+        toast.error("There is already existing payer with the same name.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const newPayer = {
+          value: payerData,
+          label: payerData.billToName,
+        };
+        setPayers([...payers, newPayer]);
+        setIsPayerOpen(false);
+        updateCookies("myPayers", [...payers, newPayer]);
+      }
     }
   };
 
@@ -253,13 +285,29 @@ function Generate() {
         theme: "colored",
       });
     } else {
-      const newItem = {
-        value: itemData,
-        label: itemData.itemName,
-      };
-      setItems([...items, newItem]);
-      setItemOpen(false);
-      updateCookies("myItems", [...items, newItem]);
+      const isExistingItem = items.some(
+        (item) => item.label === itemData.itemName
+      );
+      if (isExistingItem) {
+        toast.error("There is already existing item with the same name.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const newItem = {
+          value: itemData,
+          label: itemData.itemName,
+        };
+        setItems([...items, newItem]);
+        setItemOpen(false);
+        updateCookies("myItems", [...items, newItem]);
+      }
     }
   };
 
@@ -498,13 +546,19 @@ function Generate() {
               </div>
             </form>
             <div className={classes.btnGroup}>
-              {formData.title.length > 0 && formData.payToName.length > 0 && formData.billToName.length > 0 && formData.items.length > 0  && (
-                <button className="primary">
-                <PDFDownloadLink document={renderPdf()} fileName="invoice.pdf">
-                  Download PDF <Download />
-                </PDFDownloadLink>
-              </button>
-              )}
+              {formData.title.length > 0 &&
+                formData.payToName.length > 0 &&
+                formData.billToName.length > 0 &&
+                formData.items.length > 0 && (
+                  <button className="primary">
+                    <PDFDownloadLink
+                      document={renderPdf()}
+                      fileName="invoice.pdf"
+                    >
+                      Download PDF <Download />
+                    </PDFDownloadLink>
+                  </button>
+                )}
               <button className="secondary" onClick={() => handleOpenPreview()}>
                 Preview <Eye />
               </button>
@@ -610,19 +664,6 @@ function Generate() {
         dataToModify={dataToModify}
         onRemove={handleItemsRemove}
         onQuantityUpdate={handleQuantityUpdate}
-      />
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
       />
     </main>
   );

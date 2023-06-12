@@ -1,6 +1,7 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Mail } from "feather-icons-react";
+import { toast } from "react-toastify";
 import ContactUs from "../assets/payment.jpg";
 import classes from "./Contact.module.css";
 import { Send, User } from "feather-icons-react/build/IconComponents";
@@ -13,6 +14,27 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Email validation regex pattern
+    const emailRegex = /^\S+@\S+\.\S+$/;
+
+    if (!emailRegex.test(email)) {
+      // Display an error message or handle the validation error in an appropriate way
+      toast.error(
+        "Invalid Email Address. Please enter a valid email address.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+      return;
+    }
 
     const templateParams = {
       from_name: name,
@@ -29,10 +51,31 @@ function Contact() {
         "5ACeaeNHitHr5ZX-K"
       )
       .then((response) => {
-        console.log("Email sent successfully!", response.status, response.text);
+        toast.success("Email sent successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((error) => {
-        console.error("Error sending email:", error);
+        toast.error(
+          "Error sending email: " + error + "please try again later.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        );
       });
 
     setSent(true);
@@ -83,10 +126,10 @@ function Contact() {
                     />
                     <User />
                   </div>
-                  <label htmlFor="userEmail">Name</label>
+                  <label htmlFor="userEmail">Email</label>
                   <div className="input-wrapper">
                     <input
-                      type="email"
+                      type="text"
                       id="userEmail"
                       name="userEmail"
                       placeholder="john@billify.com"

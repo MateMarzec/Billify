@@ -1,6 +1,7 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Search } from "feather-icons-react";
+import { toast } from "react-toastify";
 import classes from "./Newsletter.module.css";
 import { Mail } from "feather-icons-react/build/IconComponents";
 
@@ -10,6 +11,27 @@ function Newsletter() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Email validation regex pattern
+    const emailRegex = /^\S+@\S+\.\S+$/;
+
+    if (!emailRegex.test(email)) {
+      // Display an error message or handle the validation error in an appropriate way
+      toast.error(
+        "Invalid Email Address. Please enter a valid email address.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+      return;
+    }
 
     emailjs
       .send(
@@ -21,10 +43,31 @@ function Newsletter() {
         "5ACeaeNHitHr5ZX-K"
       )
       .then((response) => {
-        console.log("Email sent successfully!", response.status, response.text);
+        toast.success("Email sent successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((error) => {
-        console.error("Error sending email:", error);
+        toast.error(
+          "Error sending email: " + error + "please try again later.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        );
       });
 
     setSubmitted(true);
@@ -38,15 +81,15 @@ function Newsletter() {
     <aside className={classes.newsletter}>
       <div className={classes.container}>
         <p>
-          Join <span>1,000+</span> other people
+          Join <span>other</span> people and get the latest updates.
         </p>
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           {!submitted ? (
             <>
               <div className="input-wrapper">
                 <input
                   className={classes.newsletterEmail}
-                  type="email"
+                  type="text"
                   id="newsletter"
                   name="newsletter"
                   placeholder="Enter your email"
@@ -60,12 +103,12 @@ function Newsletter() {
                 Subscribe
               </button>
             </>
-            ) : (
-              <button type="submit" className="primary lg" disabled>
-                Thanks for subscribing!
-              </button>
+          ) : (
+            <button type="submit" className="primary lg" disabled>
+              Thanks for subscribing!
+            </button>
           )}
-          </form>
+        </form>
       </div>
     </aside>
   );
