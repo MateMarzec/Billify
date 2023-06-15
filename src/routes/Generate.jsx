@@ -394,6 +394,32 @@ function Generate() {
     setPreviewOpen(false);
   };
 
+  const validateForm = () => {
+    if (
+      formData.title.length > 0 &&
+      formData.payToName.length > 0 &&
+      formData.billToName.length > 0 &&
+      formData.items.length > 0
+    ) {
+      const pdfBlob = renderPdf();
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(pdfBlob);
+      link.download = "invoice.pdf";
+      link.click();
+    } else {
+      toast.error("Please fill-out the form and provide all necessary information.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   //Render
   const renderPdf = () => (
     <Document>
@@ -415,7 +441,7 @@ function Generate() {
             <p>Fill out the form and generate the invoice in seconds.</p>
             <form>
               <div>
-                <label htmlFor="title">Invoice Title</label>
+                <label htmlFor="title">Invoice Title<span className="required">*Required</span></label>
                 <div className="input-wrapper">
                   <input
                     type="text"
@@ -470,7 +496,7 @@ function Generate() {
               </div>
 
               <div className={classes.select}>
-                <label htmlFor="payee">Invoice From</label>
+                <label htmlFor="payee">Invoice From<span className="required">*Required</span></label>
                 <Select
                   onChange={handlePayeeSelectChange}
                   className="basic-single"
@@ -497,7 +523,7 @@ function Generate() {
               </div>
 
               <div className={classes.select}>
-                <label htmlFor="payer">Bill To</label>
+                <label htmlFor="payer">Bill To<span className="required">*Required</span></label>
                 <Select
                   onChange={handlePayerSelectChange}
                   className="basic-single"
@@ -524,7 +550,7 @@ function Generate() {
               </div>
 
               <div className={classes.select}>
-                <label htmlFor="items">Items & Services</label>
+                <label htmlFor="items">Items & Services<span className="required">*Required</span></label>
                 <Select
                   onChange={handleItemsSelectChange}
                   classNamePrefix="select"
@@ -577,19 +603,9 @@ function Generate() {
               </div>
             </form>
             <div className={classes.btnGroup}>
-              {formData.title.length > 0 &&
-                formData.payToName.length > 0 &&
-                formData.billToName.length > 0 &&
-                formData.items.length > 0 && (
-                  <button className="primary">
-                    <PDFDownloadLink
-                      document={renderPdf()}
-                      fileName="invoice.pdf"
-                    >
-                      Download PDF <Download />
-                    </PDFDownloadLink>
-                  </button>
-                )}
+              <button className="primary" onClick={validateForm}>
+                Download PDF <Download />
+              </button>
               <button className="secondary" onClick={() => handleOpenPreview()}>
                 Preview <Eye />
               </button>

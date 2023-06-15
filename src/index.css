@@ -306,4 +306,5 @@ textarea:active {
     font-size: 12px;
     line-height: 17px;
     color: #DB4324;
+    padding-left: 4px;
 }
