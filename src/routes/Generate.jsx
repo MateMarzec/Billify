@@ -42,6 +42,12 @@ function Generate() {
     year: "numeric",
   });
 
+  const currency = [
+    { value: "$", label: "British Pounds (GBP)" },
+    { value: "PLN", label: "Polish Zloty (PLN)" },
+    { value: "£", label: "US Dollars (USD)" },
+  ];
+
   const [formData, setFormData] = useState({
     title: "",
     date: formattedDate,
@@ -51,6 +57,7 @@ function Generate() {
     billToName: "",
     billToAddress: {},
     items: [],
+    currency: "£",
     notes: "",
   });
   const [dueDateEnabled, setDueDateEnabled] = useState(false);
@@ -372,6 +379,13 @@ function Generate() {
     });
   };
 
+  const handleCurrencySelectChange = (e) => {
+    setFormData({
+      ...formData,
+      currency: e.value,
+    });
+  };
+
   const handleOpenPreview = () => {
     setPreviewOpen(true);
   };
@@ -530,6 +544,17 @@ function Generate() {
                 )}
               </div>
 
+              <div className={classes.select}>
+                <label htmlFor="currency">Currency</label>
+                <Select
+                  onChange={handleCurrencySelectChange}
+                  classNamePrefix="select"
+                  name="currency"
+                  options={currency}
+                  defaultValue={currency[0]}
+                />
+              </div>
+
               <div>
                 <label htmlFor="notes">Notes</label>
                 <div className="input-wrapper">
@@ -624,8 +649,32 @@ function Generate() {
               ) : (
                 Object.values(formData.items).map((item, index) => (
                   <p key={index}>
-                    {item.itemName}, {item.itemDescription}, ${item.itemPrice},
-                    {item.itemQuantity}, {item.itemPrice * item.itemQuantity}
+                    {item.itemName}, {item.itemDescription},{" "}
+                    {formData.currency === "£" && (
+                      <>
+                        {formData.currency}
+                        {item.itemPrice}
+                      </>
+                    )}
+                    {formData.currency !== "£" && (
+                      <>
+                        {item.itemPrice}
+                        {formData.currency}
+                      </>
+                    )}
+                    ,{item.itemQuantity},{" "}
+                    {formData.currency === "£" && (
+                      <>
+                        {formData.currency}
+                        {item.itemPrice * item.itemQuantity}
+                      </>
+                    )}
+                    {formData.currency !== "£" && (
+                      <>
+                        {item.itemPrice * item.itemQuantity}
+                        {formData.currency}
+                      </>
+                    )}
                   </p>
                 ))
               )}

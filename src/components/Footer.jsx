@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Newsletter from "./Newsletter";
 import Logo from "/logo.svg";
 import classes from "./Footer.module.css";
@@ -6,6 +7,18 @@ import classes from "./Footer.module.css";
 function Footer() {
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <Newsletter />
       <footer className={classes.footer}>
         <div className={classes.container}>
