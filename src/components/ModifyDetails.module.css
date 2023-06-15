@@ -1,0 +1,28 @@
+
+.modifyContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modifyContainer > div{
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.modifyContainer > span {
+    display: flex;
+    align-items: center;
+    color: #DB4324;
+    cursor: pointer;
+}
+
+.input{
+    padding-left: 16px;
+    max-width: 96px;
+}
+.modifyData button{
+    width: fit-content;
+}

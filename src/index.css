@@ -137,10 +137,11 @@ button:disabled:hover {
     box-shadow: none;
 }
 
-.Toastify button{
+.Toastify button {
     box-shadow: none;
 }
-.Toastify button:hover{
+
+.Toastify button:hover {
     box-shadow: none;
     transform: none;
 }
@@ -151,6 +152,7 @@ label {
     font-size: 16px;
     line-height: 22px;
     letter-spacing: -0.013em;
+    display: flex;
 }
 
 .input-wrapper {
@@ -297,4 +299,11 @@ textarea:active {
 .select__menu {
     padding: 0 !important;
     overflow: hidden;
+}
+
+.required {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #DB4324;
 }

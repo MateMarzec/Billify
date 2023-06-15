@@ -415,7 +415,7 @@ function Generate() {
             <p>Fill out the form and generate the invoice in seconds.</p>
             <form>
               <div>
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Invoice Title</label>
                 <div className="input-wrapper">
                   <input
                     type="text"
@@ -470,7 +470,7 @@ function Generate() {
               </div>
 
               <div className={classes.select}>
-                <label htmlFor="payee">Payee Details</label>
+                <label htmlFor="payee">Invoice From</label>
                 <Select
                   onChange={handlePayeeSelectChange}
                   className="basic-single"
@@ -478,24 +478,26 @@ function Generate() {
                   name="payerDetails"
                   options={payees}
                 />
-                <button
-                  className="secondary sm"
-                  onClick={(e) => openPayeeDialog(e)}
-                >
-                  Add New Payee <Plus />
-                </button>
-                {payees.length > 0 && (
+                <div className={classes.btnGroup}>
                   <button
                     className="secondary sm"
-                    onClick={(e) => openModifyDetails(e, "Payees")}
+                    onClick={(e) => openPayeeDialog(e)}
                   >
-                    Remove Payees <Minus />
+                    Add New <Plus />
                   </button>
-                )}
+                  {payees.length > 0 && (
+                    <button
+                      className="secondary sm"
+                      onClick={(e) => openModifyDetails(e, "Payees")}
+                    >
+                      Remove <Minus />
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className={classes.select}>
-                <label htmlFor="payer">Payer Details</label>
+                <label htmlFor="payer">Bill To</label>
                 <Select
                   onChange={handlePayerSelectChange}
                   className="basic-single"
@@ -503,20 +505,22 @@ function Generate() {
                   name="payeeDetails"
                   options={payers}
                 />
-                <button
-                  className="secondary sm"
-                  onClick={(e) => openPayerDialog(e)}
-                >
-                  Add New Payer <Plus />
-                </button>
-                {payers.length > 0 && (
+                <div className={classes.btnGroup}>
                   <button
                     className="secondary sm"
-                    onClick={(e) => openModifyDetails(e, "Payers")}
+                    onClick={(e) => openPayerDialog(e)}
                   >
-                    Remove Payers <Minus />
+                    Add New <Plus />
                   </button>
-                )}
+                  {payers.length > 0 && (
+                    <button
+                      className="secondary sm"
+                      onClick={(e) => openModifyDetails(e, "Payers")}
+                    >
+                      Remove <Minus />
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className={classes.select}>
@@ -528,20 +532,22 @@ function Generate() {
                   options={items}
                   isMulti
                 />
-                <button
-                  className="secondary sm"
-                  onClick={(e) => openItemDialog(e)}
-                >
-                  Add New Item or Service <Plus />
-                </button>
-                {items.length > 0 && (
+                <div className={classes.btnGroup}>
                   <button
                     className="secondary sm"
-                    onClick={(e) => openModifyDetails(e, "Items")}
+                    onClick={(e) => openItemDialog(e)}
                   >
-                    Remove or Change Quantity
+                    Add New <Plus />
                   </button>
-                )}
+                  {items.length > 0 && (
+                    <button
+                      className="secondary sm"
+                      onClick={(e) => openModifyDetails(e, "Items")}
+                    >
+                      Remove or Change Quantity
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className={classes.select}>

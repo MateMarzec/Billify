@@ -27,10 +27,10 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-backdrop" onClick={onClose}></div>
       <div className="modal-dialog">
         <h2>Item or Service Details</h2>
-        <p>Please provide following details</p>
+        <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="itemName">Item Name<span>*Required</span></label>
+            <label htmlFor="itemName">Item Name<span class="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -57,7 +57,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="itemPrice">Item Price<span>*Required</span></label>
+            <label htmlFor="itemPrice">Item Price<span class="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"

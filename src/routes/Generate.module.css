@@ -25,7 +25,8 @@
     height: 100%;
     z-index: 1;
 }
-.rightSideOpen{
+
+.rightSideOpen {
     display: block;
 }
 
@@ -48,33 +49,34 @@
 .preview::-webkit-scrollbar {
     display: none;
 }
-.preview > span{
-    display: flex;
-    justify-content: flex-end;
+
+.preview>span {
+    position: absolute;
+    right: 16px;
     color: var(--alpha-800);
 }
 
 .preview h2 {
     font-weight: 600;
-    font-size: 30px;
-    line-height: 36px;
-    letter-spacing: -0.021em;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.017em;
     color: var(--primary-black);
+    margin-right: 24px;
 }
 
 .preview h3 {
     font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-    letter-spacing: -0.017em;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.013em;
     color: var(--primary-black);
 }
 
 .preview p {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: -0.013em;
+    font-size: 12px;
+    line-height: 17px;
     color: var(--alpha-800);
 }
 
@@ -91,7 +93,6 @@
 .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .content h1 {
@@ -132,6 +133,7 @@
     line-height: 22px;
     letter-spacing: -0.013em;
     color: var(--primary-black);
+    display: inline-block;
 }
 
 .content form>div>div {
@@ -165,11 +167,21 @@
     width: fit-content;
 }
 
+.select .btnGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.select .btnGroup button {
+    width: fit-content;
+}
+
 .content textarea {
     margin-bottom: 32px;
 }
 
-.content .btnGroup {
+.content>.btnGroup {
     margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
@@ -177,7 +189,7 @@
     gap: 16px;
 }
 
-.content .btnGroup button a {
+.content>.btnGroup button a {
     text-decoration: none;
     color: var(--primary-white);
     display: flex;
@@ -245,14 +257,14 @@
         width: fit-content;
     }
 
-    .content .btnGroup {
+    .content>.btnGroup {
         margin-top: 0;
         flex-direction: row;
         justify-content: flex-start;
         gap: 16px;
     }
 
-    .btnGroup button:last-child {
+    .content>.btnGroup button:last-child {
         display: none;
     }
 
