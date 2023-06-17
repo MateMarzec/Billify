@@ -30,7 +30,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="itemName">Item Name<span class="required">*Required</span></label>
+            <label htmlFor="itemName">Item Name<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -57,7 +57,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="itemPrice">Item Price<span class="required">*Required</span></label>
+            <label htmlFor="itemPrice">Item Price<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"

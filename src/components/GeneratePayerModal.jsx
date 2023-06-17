@@ -45,7 +45,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="payerName">Full Name or Company Name<span class="required">*Required</span></label>
+            <label htmlFor="payerName">Full Name or Company Name<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -59,7 +59,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="firstLine">Address First Line<span class="required">*Required</span></label>
+            <label htmlFor="firstLine">Address First Line<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -86,7 +86,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="postCode">Post Code<span class="required">*Required</span></label>
+            <label htmlFor="postCode">Post Code<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -100,7 +100,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="city">City<span class="required">*Required</span></label>
+            <label htmlFor="city">City<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -114,7 +114,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="country">Country<span class="required">*Required</span></label>
+            <label htmlFor="country">Country<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
