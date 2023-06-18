@@ -65,6 +65,7 @@ function Generate() {
     items: [],
     currency: "£",
     notes: "",
+    totalAmount: 0,
   });
   const [dueDateEnabled, setDueDateEnabled] = useState(false);
   const [formDate, setFormDate] = useState(today);
@@ -98,6 +99,40 @@ function Generate() {
     setPayers(savedPayers);
     setItems(savedItems);
   }, []);
+
+  useEffect(() => {
+    // Calculate the total amount when the items array or item prices change
+    const calculateTotalAmount = () => {
+      const totalPrice = formData.items.reduce((total, item) => {
+        return total + Number(item.itemPrice);
+      }, 0);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        totalAmount: totalPrice,
+      }));
+      console.log(formData.totalAmount);
+    };
+
+    calculateTotalAmount(); // Initial calculation
+
+    // Add event listener to items array and item prices
+    const unsubscribe = formData.items.map((item) => {
+      return () => {
+        // No specific listener, just trigger calculation on item changes
+        calculateTotalAmount();
+
+        console.log(formData.totalAmount);
+      };
+    });
+
+    return () => {
+      // Clean up the event listener when component unmounts
+      unsubscribe.forEach((unsubscribeFn) => {
+        unsubscribeFn();
+      });
+    };
+  }, [formData.items]);
 
   useEffect(() => {}, [formData.items]);
 
@@ -489,6 +524,26 @@ function Generate() {
                 )}
               </View>
             ))}
+            {formData.totalAmount > 0 && (
+              <View style={styles.row}>
+                <Text style={styles.columnFirst}></Text>
+                <Text style={styles.columnFirst}></Text>
+                <Text style={styles.columnFirst}></Text>
+                <Text style={styles.columnFirstLast}>Total Amount</Text>
+                {formData.currency === "£" && (
+                  <Text style={styles.columnFirstLastSum}>
+                    {formData.currency}
+                    {formData.totalAmount}
+                  </Text>
+                )}
+                {formData.currency !== "£" && (
+                  <Text style={styles.columnFirstLastSum}>
+                    {formData.totalAmount}
+                    {formData.currency}
+                  </Text>
+                )}
+              </View>
+            )}
           </View>
         </View>
         <View style={{ display: "flex", flexDirection: "column" }}>
@@ -514,14 +569,14 @@ function Generate() {
     date: {
       fontFamily: "Inter",
       fontSize: 12,
-      color: "#00000052",
+      color: "#000000a3",
       marginBottom: 1,
       lineHeight: 1.4,
     },
     text: {
       fontFamily: "Inter",
       fontSize: 12,
-      color: "#00000052",
+      color: "#000000a3",
       marginBottom: 1,
       lineHeight: 1.4,
     },
@@ -535,7 +590,7 @@ function Generate() {
       flex: 1,
       fontFamily: "Inter",
       fontSize: 12,
-      color: "#00000052",
+      color: "#000000a3",
       lineHeight: 1.4,
     },
     columnFirst: {
@@ -553,14 +608,22 @@ function Generate() {
       textAlign: "right",
       lineHeight: 1.4,
     },
+    columnFirstLastSum: {
+      flex: 1,
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#000000a3",
+      textAlign: "right",
+      lineHeight: 1.4,
+    },
     columnLast: {
       flex: 1,
       fontFamily: "Inter",
       fontSize: 12,
-      color: "#00000052",
+      color: "#000000a3",
       textAlign: "right",
       lineHeight: 1.4,
-    }
+    },
   });
 
   const validateForm = () => {
@@ -878,6 +941,28 @@ function Generate() {
                     </p>
                   ))}
                 </>
+              )}
+              {formData.totalAmount > 0 && (
+                <p>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span className={classes.total}>Total Amount</span>
+                  <span>
+                    {formData.currency === "£" && (
+                      <span>
+                        {formData.currency}
+                        {formData.totalAmount}
+                      </span>
+                    )}
+                    {formData.currency !== "£" && (
+                      <span>
+                        {formData.totalAmount}
+                        {formData.currency}
+                      </span>
+                    )}
+                  </span>
+                </p>
               )}
             </div>
             {formData.notes && (

@@ -63,7 +63,7 @@ function Navigation() {
           <p>Contact</p>
         </Link>
         <div>
-          <Link to="/generate">
+          <Link to="/generate" onClick={handleMobileLinkClick}>
             <button className="primary" type="button">
               Generate Invoice <ArrowRight />
             </button>

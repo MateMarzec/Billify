@@ -57,7 +57,7 @@
     color: var(--alpha-800);
 }
 
-.preview > div:nth-child(2){
+.preview>div:nth-child(2) {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,26 +98,32 @@
     color: var(--alpha-600);
 }
 
-.preview .items p{
+.preview .items p {
     display: flex;
     gap: 4px;
 }
 
-.preview .items p{
+.preview .items p {
     margin-bottom: 8px;
     position: relative;
 
 }
-.preview .items p:nth-child(2){
+
+.preview .items p:nth-child(2) {
     color: var(--primary-black);
     margin-bottom: 4px;
 }
 
-.preview .items p span{
+.preview .items p span {
     flex: 1;
 }
-.preview .items p span:nth-last-child(-n+3){
+
+.preview .items p span:nth-last-child(-n+3) {
     text-align: right;
+}
+
+.preview .total{
+    color: var(--primary-black);
 }
 
 .content {
@@ -182,7 +188,7 @@
     margin-left: 8px;
 }
 
-.datePicker label{
+.datePicker label {
     display: inline-block !important;
 }
 
