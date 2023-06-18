@@ -445,7 +445,7 @@ function Generate() {
             </Text>
           ))}
           {formData.dueDate && (
-            <Text style={styles.date}> Due: {formData.dueDate}</Text>
+            <Text style={styles.date}>Due: {formData.dueDate}</Text>
           )}
         </View>
         <View
@@ -453,33 +453,41 @@ function Generate() {
         >
           <Text style={styles.heading}>Items:</Text>
           <View>
+            <View style={styles.row}>
+              <Text style={styles.columnFirst}>Name</Text>
+              <Text style={styles.columnFirst}>Description</Text>
+              <Text style={styles.columnFirstLast}>Price</Text>
+              <Text style={styles.columnFirstLast}>Quantity</Text>
+              <Text style={styles.columnFirstLast}>Total Price</Text>
+            </View>
             {Object.values(formData.items).map((item, index) => (
-              <Text key={index} style={styles.text}>
-                {item.itemName}, {item.itemDescription}
+              <View key={index} style={styles.row}>
+                <Text style={styles.column}>{item.itemName}</Text>
+                <Text style={styles.column}>{item.itemDescription}</Text>
                 {formData.currency === "£" ? (
-                  <Text>
+                  <Text style={styles.columnLast}>
                     {formData.currency}
                     {item.itemPrice}
                   </Text>
                 ) : (
-                  <Text>
+                  <Text style={styles.columnLast}>
                     {item.itemPrice}
                     {formData.currency}
                   </Text>
                 )}
-                ,{item.itemQuantity}
+                <Text style={styles.columnLast}>{item.itemQuantity}</Text>
                 {formData.currency === "£" ? (
-                  <Text>
+                  <Text style={styles.columnLast}>
                     {formData.currency}
                     {item.itemPrice * item.itemQuantity}
                   </Text>
                 ) : (
-                  <Text>
+                  <Text style={styles.columnLast}>
                     {item.itemPrice * item.itemQuantity}
                     {formData.currency}
                   </Text>
                 )}
-              </Text>
+              </View>
             ))}
           </View>
         </View>
@@ -494,11 +502,13 @@ function Generate() {
   const styles = StyleSheet.create({
     title: {
       fontFamily: "Inter-600",
-      fontSize: 20,
+      fontSize: 30,
+      lineHeight: 1.2,
     },
     heading: {
       fontFamily: "Inter-600",
-      fontSize: 16,
+      fontSize: 20,
+      lineHeight: 1.4,
       marginBottom: 2,
     },
     date: {
@@ -506,13 +516,51 @@ function Generate() {
       fontSize: 12,
       color: "#00000052",
       marginBottom: 1,
+      lineHeight: 1.4,
     },
     text: {
       fontFamily: "Inter",
       fontSize: 12,
       color: "#00000052",
       marginBottom: 1,
+      lineHeight: 1.4,
     },
+    row: {
+      display: "flex",
+      flexDirection: "row",
+      gap: 4,
+      marginBottom: 6,
+    },
+    column: {
+      flex: 1,
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#00000052",
+      lineHeight: 1.4,
+    },
+    columnFirst: {
+      flex: 1,
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#000000",
+      lineHeight: 1.4,
+    },
+    columnFirstLast: {
+      flex: 1,
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#000000",
+      textAlign: "right",
+      lineHeight: 1.4,
+    },
+    columnLast: {
+      flex: 1,
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#00000052",
+      textAlign: "right",
+      lineHeight: 1.4,
+    }
   });
 
   const validateForm = () => {
@@ -791,10 +839,17 @@ function Generate() {
                 <p>No Items & Services</p>
               ) : (
                 <>
-                  <p><span>Name</span><span>Description</span><span>Price</span><span>Quantity</span><span>Total Price</span></p>
+                  <p>
+                    <span>Name</span>
+                    <span>Description</span>
+                    <span>Price</span>
+                    <span>Quantity</span>
+                    <span>Total Price</span>
+                  </p>
                   {Object.values(formData.items).map((item, index) => (
                     <p key={index}>
-                      <span>{item.itemName}</span><span>{item.itemDescription}</span>
+                      <span>{item.itemName}</span>
+                      <span>{item.itemDescription}</span>
                       {formData.currency === "£" && (
                         <span>
                           {formData.currency}

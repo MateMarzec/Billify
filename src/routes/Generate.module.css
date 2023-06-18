@@ -108,20 +108,9 @@
     position: relative;
 
 }
-.preview .items p::after{
-    content: "";
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    background-color: var(--alpha-600);
-    bottom: -4px;
-}
-.preview .items p:nth-child(2)::after{
-    background-color: var(--alpha-800);
-}
-
-.preview .items p:last-child:after{
-    content: none;
+.preview .items p:nth-child(2){
+    color: var(--primary-black);
+    margin-bottom: 4px;
 }
 
 .preview .items p span{
