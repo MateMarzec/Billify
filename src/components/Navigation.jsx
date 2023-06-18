@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
-import {
-  ChevronDown,
-  Menu,
-  ArrowRight,
-} from "feather-icons-react/build/IconComponents";
+import { useState } from "react";
+import { Menu, ArrowRight, X } from "feather-icons-react/build/IconComponents";
 import Logo from "/logo.svg";
 import classes from "./Navigation.module.css";
 
 function Navigation() {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleMobileLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <nav className={classes.nav}>
       <div className={classes.container}>
@@ -19,11 +26,11 @@ function Navigation() {
             <p>Home</p>
           </Link>
           <Link to="/resources/articles">
-              <p>Articles</p>
-            </Link>
-            <Link to="/resources/docs">
-              <p>Docs</p>
-            </Link>
+            <p>Articles</p>
+          </Link>
+          <Link to="/resources/docs">
+            <p>Docs</p>
+          </Link>
           <Link to="/contact">
             <p>Contact</p>
           </Link>
@@ -34,10 +41,37 @@ function Navigation() {
               Generate Invoice <ArrowRight />
             </button>
           </Link>
-          <Menu />
+          <Menu onClick={handleMobileMenuToggle} />
+        </div>
+      </div>
+      <div
+        className={`${classes.containerMobile} ${
+          isMobileMenuOpen ? classes.openContainerMobile : ""
+        }`}
+      >
+        <X onClick={handleMobileMenuToggle} />
+        <Link to="/" onClick={handleMobileLinkClick}>
+          <p>Home</p>
+        </Link>
+        <Link to="/resources/articles" onClick={handleMobileLinkClick}>
+          <p>Articles</p>
+        </Link>
+        <Link to="/resources/docs" onClick={handleMobileLinkClick}>
+          <p>Docs</p>
+        </Link>
+        <Link to="/contact" onClick={handleMobileLinkClick}>
+          <p>Contact</p>
+        </Link>
+        <div>
+          <Link to="/generate">
+            <button className="primary" type="button">
+              Generate Invoice <ArrowRight />
+            </button>
+          </Link>
         </div>
       </div>
     </nav>
   );
 }
+
 export default Navigation;
