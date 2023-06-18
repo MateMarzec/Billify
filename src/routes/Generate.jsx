@@ -7,6 +7,8 @@ import {
   Page,
   Text,
   View,
+  StyleSheet,
+  Font,
 } from "@react-pdf/renderer";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
@@ -32,6 +34,10 @@ import ModifyDetails from "../components/ModifyDetails";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./Generate.module.css";
+
+//Fonts
+import InterRegular from "../assets/fonts/Inter-Regular.ttf";
+import InterMedium from "../assets/fonts/Inter-Bold.ttf";
 
 function Generate() {
   // States
@@ -394,107 +400,121 @@ function Generate() {
     setPreviewOpen(false);
   };
 
+  // Register font
+  Font.register({ family: "Inter", src: InterRegular });
+  Font.register({ family: "Inter-600", src: InterMedium });
+
   //Render
   const renderPdf = () => (
     <Document>
-      <Page>
-        <View style={styles.container}>
-          <Text>
-            <Text style={styles.title}>{formData.title}</Text>
-            <Text style={styles.date}>{formData.date}</Text>
-          </Text>
+      <Page
+        wrap
+        style={{ padding: 16, display: "flex", flexDirection: "column" }}
+      >
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 24,
+          }}
+        >
+          <Text style={styles.title}>{formData.title}</Text>
+          <Text style={styles.date}>{formData.date}</Text>
         </View>
-        <View style={styles.section}>
-          <Text>
-            <Text style={styles.heading}>Invoice From:</Text>
-            <Text>{formData.payToName}</Text>
-            <View>
-              {Object.entries(formData.payToAddress).map(([key, obj]) => (
-                <Text key={key}>{obj}</Text>
-              ))}
-            </View>
-          </Text>
-        </View>
-        <View style={styles.section}>
-          <Text>
-            <Text style={styles.heading}>Bill To:</Text>
-            <Text>{formData.billToName}</Text>
-            <View>
-              {Object.entries(formData.billToAddress).map(([key, obj]) => (
-                <Text key={key}>{obj}</Text>
-              ))}
-            </View>
-            <Text>Due: {formData.dueDate}</Text>
-          </Text>
-        </View>
-        <View style={styles.section}>
-          <Text>
-            <Text style={styles.heading}>Items:</Text>
-          </Text>
-          {Object.values(formData.items).map((item, index) => (
-            <Text key={index} style={styles.item}>
-              {item.itemName}, {item.itemDescription}
-              {formData.currency === "£" ? (
-                <Text>
-                  {formData.currency}
-                  {item.itemPrice}
-                </Text>
-              ) : (
-                <Text>
-                  {item.itemPrice}
-                  {formData.currency}
-                </Text>
-              )}
-              ,{item.itemQuantity}
-              {formData.currency === "£" ? (
-                <Text>
-                  {formData.currency}
-                  {item.itemPrice * item.itemQuantity}
-                </Text>
-              ) : (
-                <Text>
-                  {item.itemPrice * item.itemQuantity}
-                  {formData.currency}
-                </Text>
-              )}
+        <View
+          style={{ display: "flex", flexDirection: "column", marginBottom: 24 }}
+        >
+          <Text style={styles.heading}>Invoice From:</Text>
+          <Text style={styles.text}>{formData.payToName}</Text>
+          {Object.entries(formData.payToAddress).map(([key, obj]) => (
+            <Text style={styles.text} key={key}>
+              {obj}
             </Text>
           ))}
         </View>
-        <View style={styles.section}>
-          <Text>
-            <Text style={styles.heading}>Notes:</Text>
-          </Text>
-          <Text>{formData.notes}</Text>
+        <View
+          style={{ display: "flex", flexDirection: "column", marginBottom: 24 }}
+        >
+          <Text style={styles.heading}>Bill To:</Text>
+          <Text style={styles.text}>{formData.billToName}</Text>
+          {Object.entries(formData.billToAddress).map(([key, obj]) => (
+            <Text key={key} style={styles.text}>
+              {obj}
+            </Text>
+          ))}
+          {formData.dueDate && (
+            <Text style={styles.date}> Due: {formData.dueDate}</Text>
+          )}
+        </View>
+        <View
+          style={{ display: "flex", flexDirection: "column", marginBottom: 24 }}
+        >
+          <Text style={styles.heading}>Items:</Text>
+          <View>
+            {Object.values(formData.items).map((item, index) => (
+              <Text key={index} style={styles.text}>
+                {item.itemName}, {item.itemDescription}
+                {formData.currency === "£" ? (
+                  <Text>
+                    {formData.currency}
+                    {item.itemPrice}
+                  </Text>
+                ) : (
+                  <Text>
+                    {item.itemPrice}
+                    {formData.currency}
+                  </Text>
+                )}
+                ,{item.itemQuantity}
+                {formData.currency === "£" ? (
+                  <Text>
+                    {formData.currency}
+                    {item.itemPrice * item.itemQuantity}
+                  </Text>
+                ) : (
+                  <Text>
+                    {item.itemPrice * item.itemQuantity}
+                    {formData.currency}
+                  </Text>
+                )}
+              </Text>
+            ))}
+          </View>
+        </View>
+        <View style={{ display: "flex", flexDirection: "column" }}>
+          {formData.notes && <Text style={styles.heading}>Notes:</Text>}
+          <Text style={styles.text}>{formData.notes}</Text>
         </View>
       </Page>
     </Document>
   );
 
-  const styles = {
-    container: {
-      marginBottom: 20,
-    },
+  const styles = StyleSheet.create({
     title: {
+      fontFamily: "Inter-600",
       fontSize: 20,
-      fontWeight: "bold",
-      marginBottom: 10,
-    },
-    date: {
-      fontSize: 12,
-    },
-    section: {
-      marginBottom: 20,
     },
     heading: {
+      fontFamily: "Inter-600",
       fontSize: 16,
-      fontWeight: "bold",
-      marginBottom: 10,
+      marginBottom: 2,
     },
-    item: {
-      marginBottom: 5,
+    date: {
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#00000052",
+      marginBottom: 1,
     },
-  };
-  
+    text: {
+      fontFamily: "Inter",
+      fontSize: 12,
+      color: "#00000052",
+      marginBottom: 1,
+    },
+  });
+
   const validateForm = () => {
     toast.error(
       "Please fill-out the form and provide all necessary information.",
@@ -765,45 +785,44 @@ function Generate() {
               </div>
               {formData.dueDate && <p>Due: {formData.dueDate}</p>}
             </div>
-            <div>
-              <h3>Items:</h3>
+            <div className={classes.items}>
+              <h3>Items & Services:</h3>
               {Object.keys(formData.items).length === 0 ? (
-                <p>No Items</p>
+                <p>No Items & Services</p>
               ) : (
-                Object.values(formData.items).map((item, index) => (
-                  <p key={index}>
-                    {item.itemName}, {item.itemDescription},
-                    {formData.currency === "£" && (
-                      <>
-                        {" "}
-                        {formData.currency}
-                        {item.itemPrice}
-                      </>
-                    )}
-                    {formData.currency !== "£" && (
-                      <>
-                        {" "}
-                        {item.itemPrice}
-                        {formData.currency}
-                      </>
-                    )}
-                    , {item.itemQuantity},
-                    {formData.currency === "£" && (
-                      <>
-                        {" "}
-                        {formData.currency}
-                        {item.itemPrice * item.itemQuantity}
-                      </>
-                    )}
-                    {formData.currency !== "£" && (
-                      <>
-                        {" "}
-                        {item.itemPrice * item.itemQuantity}
-                        {formData.currency}
-                      </>
-                    )}
-                  </p>
-                ))
+                <>
+                  <p><span>Name</span><span>Description</span><span>Price</span><span>Quantity</span><span>Total Price</span></p>
+                  {Object.values(formData.items).map((item, index) => (
+                    <p key={index}>
+                      <span>{item.itemName}</span><span>{item.itemDescription}</span>
+                      {formData.currency === "£" && (
+                        <span>
+                          {formData.currency}
+                          {item.itemPrice}
+                        </span>
+                      )}
+                      {formData.currency !== "£" && (
+                        <span>
+                          {item.itemPrice}
+                          {formData.currency}
+                        </span>
+                      )}
+                      <span>{item.itemQuantity}</span>
+                      {formData.currency === "£" && (
+                        <span>
+                          {formData.currency}
+                          {item.itemPrice * item.itemQuantity}
+                        </span>
+                      )}
+                      {formData.currency !== "£" && (
+                        <span>
+                          {item.itemPrice * item.itemQuantity}
+                          {formData.currency}
+                        </span>
+                      )}
+                    </p>
+                  ))}
+                </>
               )}
             </div>
             {formData.notes && (
