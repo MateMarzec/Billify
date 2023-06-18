@@ -18,10 +18,12 @@ function Navigation() {
           <Link to="/">
             <p>Home</p>
           </Link>
-          <div>
-            <p>Resources</p>
-            <ChevronDown />
-          </div>
+          <Link to="/resources/articles">
+              <p>Articles</p>
+            </Link>
+            <Link to="/resources/docs">
+              <p>Docs</p>
+            </Link>
           <Link to="/contact">
             <p>Contact</p>
           </Link>

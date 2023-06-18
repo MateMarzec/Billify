@@ -29,12 +29,16 @@
     font-size: 16px;
     line-height: 22px;
     letter-spacing: -0.013em;
-    color: var(--grey-1200);
+    color: var(--grey-800);
 }
 
 .note {
     font-weight: 400;
     color: var(--grey-1100);
+}
+
+.author > p{
+    color: var(--grey-1200);
 }
 
 @media (min-width: 768px) {
