@@ -2,7 +2,7 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Mail } from "feather-icons-react";
 import { toast } from "react-toastify";
-import ContactUs from "../assets/payment.jpg";
+import ContactUs from "../assets/contact.jpg";
 import classes from "./Contact.module.css";
 import { Send, User } from "feather-icons-react/build/IconComponents";
 
@@ -166,7 +166,7 @@ function Contact() {
           <div>
             <img
               src={ContactUs}
-              alt="One person holding card reader and the other parson paying with card"
+              alt="Person holding mobile phone and typing on it"
             />
           </div>
           <div></div>
