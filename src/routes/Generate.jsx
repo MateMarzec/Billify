@@ -111,7 +111,6 @@ function Generate() {
         ...prevFormData,
         totalAmount: totalPrice,
       }));
-      console.log(formData.totalAmount);
     };
 
     calculateTotalAmount(); // Initial calculation
@@ -121,8 +120,6 @@ function Generate() {
       return () => {
         // No specific listener, just trigger calculation on item changes
         calculateTotalAmount();
-
-        console.log(formData.totalAmount);
       };
     });
 

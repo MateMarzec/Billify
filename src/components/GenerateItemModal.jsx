@@ -60,7 +60,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             <label htmlFor="itemPrice">Item Price<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
-                type="text"
+                type="number"
                 id="itemPrice"
                 name="itemPrice"
                 value={itemData.itemPrice}
