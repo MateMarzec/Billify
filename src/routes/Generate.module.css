@@ -186,6 +186,7 @@
     width: auto;
     height: 100%;
     margin-left: 8px;
+    min-height: 15px;
 }
 
 .datePicker label {
