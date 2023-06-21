@@ -1,9 +1,7 @@
-//Libraries
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-//Components
 import Articles from "./routes/Articles";
 import Docs from "./routes/Docs";
 import Contact from "./routes/Contact";
@@ -12,10 +10,9 @@ import Home from "./routes/Home";
 import PageNotFound from "./routes/PageNotFound";
 import PostDetails from "./routes/PostDetails";
 import RootLayout from "./routes/RootLayout";
-
-//Styles
 import "./variables.css";
 import "./index.css";
+
 
 const router = createBrowserRouter([
   {

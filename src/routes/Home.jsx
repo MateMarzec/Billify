@@ -1,13 +1,8 @@
-//Libraries
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Book } from "feather-icons-react/build/IconComponents";
-
-//Styles
-import classes from "./Home.module.css";
-
-//Assets
 import Payment from "../assets/payment.jpg";
+import classes from "./Home.module.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -71,4 +66,5 @@ function Home() {
     </main>
   );
 }
+
 export default Home;

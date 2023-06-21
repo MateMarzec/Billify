@@ -1,4 +1,3 @@
-//Components
 import PostList from "../components/PostList";
 
 function Docs() {
@@ -8,4 +7,5 @@ function Docs() {
     </main>
   );
 }
+
 export default Docs;
