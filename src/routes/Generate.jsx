@@ -685,7 +685,7 @@ function Generate() {
                     dropdownMode="select"
                     todayButton="Today"
                     onChange={(date) => handleDateChange(date)}
-                    onFocus={(e) => (e.target.readOnly = true)}
+                    onFocus={e => e.target.blur()}
                   />
                   <Calendar />
                 </div>
@@ -709,7 +709,7 @@ function Generate() {
                     todayButton="Today"
                     onChange={(date) => handleDueDateChange(date)}
                     disabled={!dueDateEnabled}
-                    onFocus={(e) => (e.target.readOnly = true)}
+                    onFocus={e => e.target.blur()}
                   />
                   <Calendar />
                 </div>
