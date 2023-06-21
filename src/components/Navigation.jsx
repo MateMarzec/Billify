@@ -1,13 +1,8 @@
-//Libraries
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, ArrowRight, X } from "feather-icons-react/build/IconComponents";
-
-//Styles
-import classes from "./Navigation.module.css";
-
-//Assets
 import Logo from "/logo.svg";
+import classes from "./Navigation.module.css";
 
 function Navigation() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -78,4 +73,5 @@ function Navigation() {
     </nav>
   );
 }
+
 export default Navigation;

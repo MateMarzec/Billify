@@ -1,8 +1,5 @@
-//Libraries
+import { Globe, Home, User, X } from "feather-icons-react/build/IconComponents";
 import { useState, useEffect } from "react";
-import { X } from "feather-icons-react/build/IconComponents";
-
-//Styles
 import classes from "./ModifyDetails.module.css";
 
 function ModifyDetails({
@@ -60,4 +57,5 @@ function ModifyDetails({
     );
   }
 }
+
 export default ModifyDetails;

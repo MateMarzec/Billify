@@ -1,11 +1,9 @@
-//Libraries
 import { useState } from "react";
 import emailjs from "emailjs-com";
+import { Search } from "feather-icons-react";
 import { toast } from "react-toastify";
-import { Mail } from "feather-icons-react/build/IconComponents";
-
-//Styles
 import classes from "./Newsletter.module.css";
+import { Mail } from "feather-icons-react/build/IconComponents";
 
 function Newsletter() {
   const [email, setEmail] = useState("");

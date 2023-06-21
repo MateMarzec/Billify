@@ -1,4 +1,4 @@
-//Libraries
+import { Edit2 } from "feather-icons-react";
 import { DollarSign, Hash } from "feather-icons-react/build/IconComponents";
 import { useState } from "react";
 
@@ -10,7 +10,6 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     itemQuantity: 1,
   });
 
-  // Handles changes to any of the input fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItemData((prevState) => ({
@@ -19,7 +18,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     }));
   };
 
-  if (isOpen) {
+  if (!isOpen) {
     return null;
   }
 
@@ -31,9 +30,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="itemName">
-              Item Name<span className="required">*Required</span>
-            </label>
+            <label htmlFor="itemName">Item Name<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -60,9 +57,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="itemPrice">
-              Item Price<span className="required">*Required</span>
-            </label>
+            <label htmlFor="itemPrice">Item Price<span className="required">*Required</span></label>
             <div className="input-wrapper">
               <input
                 type="number"
@@ -87,4 +82,5 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     </>
   );
 }
+
 export default GenerateItemModal;

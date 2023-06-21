@@ -1,17 +1,10 @@
-//Libraries
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "feather-icons-react/build/IconComponents";
-
-//Components
 import Post from "./Post";
-
-//Styles
+import { Link } from "react-router-dom";
 import classes from "./PostList.module.css";
-
-//Assets
 import articlesList from "../assets/articles.json";
 import docsList from "../assets/docs.json";
+import { ArrowLeft } from "feather-icons-react/build/IconComponents";
 
 function PostList({ type }) {
   return (
@@ -85,4 +78,5 @@ function PostList({ type }) {
     </div>
   );
 }
+
 export default PostList;
