@@ -12,6 +12,7 @@ import {
 } from "@react-pdf/renderer";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
+import { motion } from "framer-motion";
 import {
   Calendar,
   Download,
@@ -641,7 +642,15 @@ function Generate() {
 
   return (
     <main className={classes.generateWrapper}>
-      <div className={classes.container}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{
+          duration: 0.3,
+          delay: 0.1,
+        }}
+        className={classes.container}
+      >
         <section className={classes.leftSide}>
           <div className={classes.content}>
             <h1>Create invoice at lighting speed</h1>
@@ -676,6 +685,7 @@ function Generate() {
                     dropdownMode="select"
                     todayButton="Today"
                     onChange={(date) => handleDateChange(date)}
+                    onFocus={(e) => (e.target.readOnly = true)}
                   />
                   <Calendar />
                 </div>
@@ -699,6 +709,7 @@ function Generate() {
                     todayButton="Today"
                     onChange={(date) => handleDueDateChange(date)}
                     disabled={!dueDateEnabled}
+                    onFocus={(e) => (e.target.readOnly = true)}
                   />
                   <Calendar />
                 </div>
@@ -970,7 +981,7 @@ function Generate() {
             )}
           </div>
         </section>
-      </div>
+      </motion.div>
 
       <GeneratePayeeModal
         isOpen={isPayeeOpen}

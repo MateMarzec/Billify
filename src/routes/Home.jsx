@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ArrowRight, Book } from "feather-icons-react/build/IconComponents";
 import Payment from "../assets/payment.jpg";
 import classes from "./Home.module.css";
@@ -7,7 +8,15 @@ function Home() {
   return (
     <main>
       <div className={classes.container}>
-        <section className={classes.leftSide}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.leftSide}
+        >
           <Link to="/resources/docs" className={classes.versionInfo}>
             <p>
               <span>v0.1</span>Latests Update
@@ -34,17 +43,25 @@ function Home() {
               </button>
             </div>
           </div>
-        </section>
-        <div className={classes.rightSide}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.rightSide}
+        >
           <div>
             <img
               src={Payment}
               alt="One person holding card reader and the other parson paying with card"
             />
           </div>
-          <div></div>
-          <div></div>
-        </div>
+          <div />
+          <div />
+        </motion.div>
       </div>
     </main>
   );

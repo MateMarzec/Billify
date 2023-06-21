@@ -1,8 +1,17 @@
+//Libraries
+import React from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+
+//Components
 import Newsletter from "./Newsletter";
-import Logo from "/logo.svg";
+
+//Styles
 import classes from "./Footer.module.css";
+
+//Assets
+import Logo from "/logo.svg";
+
 
 function Footer() {
   return (

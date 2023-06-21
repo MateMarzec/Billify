@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
+import { motion } from "framer-motion";
 import { Mail } from "feather-icons-react";
 import { toast } from "react-toastify";
 import ContactUs from "../assets/contact.jpg";
@@ -96,7 +97,15 @@ function Contact() {
   return (
     <main>
       <div className={classes.container}>
-        <section className={classes.leftSide}>
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.leftSide}
+        >
           <div className={classes.content}>
             <h1>Contact Us</h1>
             {!sent ? (
@@ -161,17 +170,25 @@ function Contact() {
               <></>
             )}
           </div>
-        </section>
-        <div className={classes.rightSide}>
+        </motion.section>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.rightSide}
+        >
           <div>
             <img
               src={ContactUs}
               alt="Person holding mobile phone and typing on it"
             />
           </div>
-          <div></div>
-          <div></div>
-        </div>
+          <div />
+          <div />
+        </motion.div>
       </div>
     </main>
   );

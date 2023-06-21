@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Post from "./Post";
 import { Link } from "react-router-dom";
 import classes from "./PostList.module.css";
@@ -33,7 +34,15 @@ function PostList({ type }) {
           />
         ))}
       {type === "articles" && articlesList.length === 0 && (
-        <div className={classes.container}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.container}
+        >
           <h1>
             There are no {type === "articles" ? <>articles</> : <>documents</>},
             please come back later.
@@ -43,10 +52,18 @@ function PostList({ type }) {
               <ArrowLeft /> Go Back
             </Link>
           </button>
-        </div>
+        </motion.div>
       )}
       {type === "docs" && docsList.length === 0 && (
-        <div className={classes.container}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.1,
+          }}
+          className={classes.container}
+        >
           <h1>
             There are no {type === "articles" ? <>articles</> : <>documents</>},
             please come back later.
@@ -56,7 +73,7 @@ function PostList({ type }) {
               <ArrowLeft /> Go Back
             </Link>
           </button>
-        </div>
+        </motion.div>
       )}
     </div>
   );

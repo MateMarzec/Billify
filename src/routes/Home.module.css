@@ -82,7 +82,12 @@
     height: 100vw;
     position: relative;
     max-width: 520px;
+    min-height: 520px;
     max-height: 520px;
+}
+
+.rightSide div {
+    box-shadow: var(--shadow-2);
 }
 
 .rightSide div:nth-child(1) {
@@ -97,7 +102,6 @@
 
 .rightSide div:nth-child(1) img {
     width: 100%;
-    z-index: 2;
 }
 
 .rightSide div:nth-child(2) {
@@ -108,6 +112,7 @@
     bottom: 0;
     right: 0;
     border-radius: 96px 0 96px 0;
+    z-index: -1;
 }
 
 .rightSide div:nth-child(3) {
@@ -215,7 +220,6 @@
     .rightSide div:nth-child(2) {
         width: 288px;
         height: 350px;
-
     }
 
     .rightSide div:nth-child(3) {
