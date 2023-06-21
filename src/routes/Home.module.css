@@ -81,8 +81,8 @@
     margin: 0 -16px;
     height: 100vw;
     position: relative;
+    width: calc(100% + 32px);
     max-width: 520px;
-    min-height: 520px;
     max-height: 520px;
 }
 
