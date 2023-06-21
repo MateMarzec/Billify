@@ -1,11 +1,16 @@
+//Libraries
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
 import { Mail } from "feather-icons-react";
 import { toast } from "react-toastify";
-import ContactUs from "../assets/contact.jpg";
-import classes from "./Contact.module.css";
 import { Send, User } from "feather-icons-react/build/IconComponents";
+
+//Styles
+import classes from "./Contact.module.css";
+
+//Assets
+import ContactUs from "../assets/contact.jpg";
 
 function Contact() {
   const [email, setEmail] = useState("");
@@ -193,5 +198,4 @@ function Contact() {
     </main>
   );
 }
-
 export default Contact;

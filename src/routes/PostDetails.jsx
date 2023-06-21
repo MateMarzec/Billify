@@ -1,9 +1,14 @@
+//Libraries
+import { Link, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "feather-icons-react/build/IconComponents";
-import { Link, useLocation, useParams } from "react-router-dom";
+
+//Styles
+import classes from "./PostDetails.module.css";
+
+//Assets
 import articlesList from "../assets/articles.json";
 import docsList from "../assets/docs.json";
-import classes from "./PostDetails.module.css";
 
 const dataMapping = {
   articles: articlesList,
@@ -57,5 +62,4 @@ function PostDetails() {
     </main>
   );
 }
-
 export default PostDetails;

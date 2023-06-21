@@ -1,4 +1,7 @@
+//Libraries
 import { Outlet } from "react-router-dom";
+
+//Components
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -11,5 +14,4 @@ function RootLayout() {
     </>
   );
 }
-
 export default RootLayout;

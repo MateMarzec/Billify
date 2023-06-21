@@ -31,12 +31,12 @@ import GeneratePayeeModal from "../components/GeneratePayeeModal";
 import GeneratePayerModal from "../components/GeneratePayerModal";
 import ModifyDetails from "../components/ModifyDetails";
 
-//CSS
+//Styles
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./Generate.module.css";
 
-//Fonts
+//Assets
 import InterRegular from "../assets/fonts/Inter-Regular.ttf";
 import InterMedium from "../assets/fonts/Inter-Bold.ttf";
 
@@ -1011,5 +1011,4 @@ function Generate() {
     </main>
   );
 }
-
 export default Generate;
