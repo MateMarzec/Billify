@@ -1,10 +1,8 @@
-//Libraries
-import { useState } from "react";
+import React, { useState } from "react";
 import { Globe, Home, User } from "feather-icons-react/build/IconComponents";
 
 function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
-  //State for the form inputs
-  const [payeeData, setPayeeData] = useState({
+  const initialPayeeData = {
     payToName: "",
     address: {
       addressFirst: "",
@@ -13,9 +11,10 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
       addressCity: "",
       addressCountry: "",
     },
-  });
+  };
 
-  //Form Inputs change handler
+  const [payeeData, setPayeeData] = useState(initialPayeeData);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name.startsWith("address.")) {
@@ -35,7 +34,12 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
     }
   };
 
-  //If form is open, render the form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(e, payeeData);
+    setPayeeData(initialPayeeData); // Reset the form inputs
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -45,8 +49,8 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-backdrop" onClick={onClose}></div>
       <div className="modal-dialog">
         <h2>Person or Company Details</h2>
-        <p>Please provide following details:</p>
-        <form>
+        <p>Please provide the following details:</p>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="payeeName">
               Full Name or Company Name
@@ -142,10 +146,10 @@ function GeneratePayeeModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div className="btn-group">
-            <button className="primary" onClick={(e) => onSubmit(e, payeeData)}>
+            <button className="primary" type="submit">
               Submit Dialog
             </button>
-            <button className="secondary" onClick={(e) => onClose(e)}>
+            <button className="secondary" onClick={onClose}>
               Close Dialog
             </button>
           </div>

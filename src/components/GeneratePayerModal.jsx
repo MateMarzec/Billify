@@ -1,10 +1,8 @@
-//Libraries
-import { useState } from "react";
+import React, { useState } from "react";
 import { Globe, Home, User } from "feather-icons-react/build/IconComponents";
 
 function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
-  //State for the form inputs
-  const [payerData, setPayerData] = useState({
+  const initialPayerData = {
     billToName: "",
     address: {
       addressFirst: "",
@@ -13,9 +11,10 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
       addressCity: "",
       addressCountry: "",
     },
-  });
+  };
 
-  //Form Inputs change handler
+  const [payerData, setPayerData] = useState(initialPayerData);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name.startsWith("address.")) {
@@ -35,7 +34,12 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
     }
   };
 
-  //If form is open, render the form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(e, payerData);
+    setPayerData(initialPayerData); // Reset the form inputs
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -45,8 +49,8 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-backdrop" onClick={onClose}></div>
       <div className="modal-dialog">
         <h2>Person or Company Details</h2>
-        <p>Please provide following details:</p>
-        <form>
+        <p>Please provide the following details:</p>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="payerName">
               Full Name or Company Name
@@ -57,7 +61,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
                 type="text"
                 id="payerName"
                 name="billToName"
-                value={payerData.payToName}
+                value={payerData.billToName}
                 onChange={handleInputChange}
                 required
               />
@@ -141,10 +145,10 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div className="btn-group">
-            <button className="primary" onClick={(e) => onSubmit(e, payerData)}>
+            <button className="primary" type="submit">
               Submit Dialog
             </button>
-            <button className="secondary" onClick={(e) => onClose(e)}>
+            <button className="secondary" onClick={onClose}>
               Close Dialog
             </button>
           </div>

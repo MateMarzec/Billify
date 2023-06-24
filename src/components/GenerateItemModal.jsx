@@ -1,17 +1,16 @@
-//Libraries
-import { useState } from "react";
+import React, { useState } from "react";
 import { DollarSign, Hash } from "feather-icons-react/build/IconComponents";
 
 function GenerateItemModal({ isOpen, onClose, onSubmit }) {
-  //State for the form inputs
-  const [itemData, setItemData] = useState({
+  const initialItemData = {
     itemName: "",
     itemDescription: "",
     itemPrice: "",
     itemQuantity: 1,
-  });
+  };
 
-  //Form inputs change handler
+  const [itemData, setItemData] = useState(initialItemData);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItemData((prevState) => ({
@@ -20,7 +19,12 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     }));
   };
 
-  //If form is open, render the form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(e, itemData);
+    setItemData(initialItemData); // Reset the form inputs
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -30,8 +34,8 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-backdrop" onClick={onClose}></div>
       <div className="modal-dialog">
         <h2>Item or Service Details</h2>
-        <p>Please provide following details:</p>
-        <form>
+        <p>Please provide the following details:</p>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="itemName">
               Item Name<span className="required">*Required</span>
@@ -41,7 +45,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
                 type="text"
                 id="itemName"
                 name="itemName"
-                value={itemData.payToName}
+                value={itemData.itemName}
                 onChange={handleInputChange}
                 required
               />
@@ -77,10 +81,10 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div className="btn-group">
-            <button className="primary" onClick={(e) => onSubmit(e, itemData)}>
+            <button className="primary" type="submit">
               Submit Dialog
             </button>
-            <button className="secondary" onClick={(e) => onClose(e)}>
+            <button className="secondary" onClick={onClose}>
               Close Dialog
             </button>
           </div>
