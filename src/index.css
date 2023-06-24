@@ -223,6 +223,16 @@ textarea:active {
     border: 1px solid var(--alpha-1200);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 /* Modals */
 .modal-backdrop {
     position: fixed;

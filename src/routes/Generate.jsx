@@ -395,19 +395,21 @@ function Generate() {
 
   //Change Quantity handler
   const handleQuantityUpdate = (itemLabel, newQuantity) => {
-    setFormData((prevFormData) => {
-      const updatedData = prevFormData.items.map((item) => {
-        if (item.itemName === itemLabel) {
-          return { ...item, itemQuantity: newQuantity };
-        }
-        return item;
-      });
+    if (newQuantity > 0) {
+      setFormData((prevFormData) => {
+        const updatedData = prevFormData.items.map((item) => {
+          if (item.itemName === itemLabel) {
+            return { ...item, itemQuantity: newQuantity };
+          }
+          return item;
+        });
 
-      return {
-        ...prevFormData,
-        items: updatedData,
-      };
-    });
+        return {
+          ...prevFormData,
+          items: updatedData,
+        };
+      });
+    }
   };
 
   //Update Cookies

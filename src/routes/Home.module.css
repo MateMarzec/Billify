@@ -220,6 +220,7 @@
     .rightSide div:nth-child(2) {
         width: 288px;
         height: 350px;
+        bottom: 16px;
     }
 
     .rightSide div:nth-child(3) {

@@ -43,6 +43,7 @@ function ModifyDetails({
                         onChange={(e) =>
                           onQuantityUpdate(obj.label, e.target.value)
                         }
+                        placeholder="Quantity"
                       />
                     )}
                   </div>
@@ -54,7 +55,7 @@ function ModifyDetails({
             </>
           )}
           <button className="btn primary" onClick={onClose}>
-            Close
+            Save
           </button>
         </div>
       </div>
