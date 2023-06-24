@@ -1,8 +1,13 @@
+//Libraries
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Book } from "feather-icons-react/build/IconComponents";
-import Payment from "../assets/payment.jpg";
+
+//Styles
 import classes from "./Home.module.css";
-import { Link } from "react-router-dom";
+
+//Assets
+import Payment from "../assets/payment.jpg";
 
 function Home() {
   return (

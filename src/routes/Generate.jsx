@@ -13,6 +13,8 @@ import {
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import { motion } from "framer-motion";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 import {
   Calendar,
   Download,
@@ -22,8 +24,6 @@ import {
   Plus,
   X,
 } from "feather-icons-react/build/IconComponents";
-import Cookies from "js-cookie";
-import { toast } from "react-toastify";
 
 //Components
 import GenerateItemModal from "../components/GenerateItemModal";
@@ -31,17 +31,17 @@ import GeneratePayeeModal from "../components/GeneratePayeeModal";
 import GeneratePayerModal from "../components/GeneratePayerModal";
 import ModifyDetails from "../components/ModifyDetails";
 
-//CSS
+//Styles
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./Generate.module.css";
 
-//Fonts
+//Assets
 import InterRegular from "../assets/fonts/Inter-Regular.ttf";
 import InterMedium from "../assets/fonts/Inter-Bold.ttf";
 
 function Generate() {
-  // States
+  //Today's Date
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -49,12 +49,14 @@ function Generate() {
     year: "numeric",
   });
 
+  //Currency Options
   const currency = [
     { value: "$", label: "British Pounds (GBP)" },
     { value: "PLN", label: "Polish Zloty (PLN)" },
     { value: "£", label: "US Dollars (USD)" },
   ];
 
+  //Form Data State
   const [formData, setFormData] = useState({
     title: "",
     date: formattedDate,
@@ -68,6 +70,8 @@ function Generate() {
     notes: "",
     totalAmount: 0,
   });
+
+  //Different States
   const [dueDateEnabled, setDueDateEnabled] = useState(false);
   const [formDate, setFormDate] = useState(today);
   const [dueDate, setDueDate] = useState(null);
@@ -81,6 +85,7 @@ function Generate() {
   const [dataToModify, setDataToModify] = useState();
   const [isPreviewOpen, setPreviewOpen] = useState(false);
 
+  //Use Effect to load saved data from cookies
   useEffect(() => {
     let savedPayees = [];
     let savedPayers = [];
@@ -101,8 +106,8 @@ function Generate() {
     setItems(savedItems);
   }, []);
 
+  //Use Effect to calculate total amount of selected items
   useEffect(() => {
-    // Calculate the total amount when the items array or item prices change
     const calculateTotalAmount = () => {
       const totalPrice = formData.items.reduce((total, item) => {
         return total + Number(item.itemPrice);
@@ -132,27 +137,26 @@ function Generate() {
     };
   }, [formData.items]);
 
+  //Use Effect to update form data when items are added or removed
   useEffect(() => {}, [formData.items]);
 
-  // Actions
+  //Open Modals handlers
   const openPayeeDialog = (e) => {
     e.preventDefault();
     setIsPayeeOpen(true);
   };
-
   const openPayerDialog = (e) => {
     e.preventDefault();
     setIsPayerOpen(true);
   };
-
   const openItemDialog = (e) => {
     e.preventDefault();
     setItemOpen(true);
   };
-
   const openModifyDetails = (e, dataType) => {
     e.preventDefault();
 
+    //Check which data type is being modified
     if (dataType === "Payees") {
       setDataToModify(["Payees", [...payees]]);
     } else if (dataType === "Payers") {
@@ -172,7 +176,7 @@ function Generate() {
     setModifyOpen(false);
   };
 
-  // Handlers
+  //Input Change handler
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -180,6 +184,7 @@ function Generate() {
     });
   };
 
+  //Invoice Date Change handler
   const handleDateChange = (date) => {
     setFormDate(date);
     setFormData({
@@ -192,6 +197,7 @@ function Generate() {
     });
   };
 
+  //Invoice Due Date Change handler
   const handleDueDateChange = (date) => {
     setDueDate(date);
     setFormData({
@@ -204,7 +210,9 @@ function Generate() {
     });
   };
 
+  //Due Date Checkbox handler
   const handleCheckboxChange = () => {
+    //If due date is enabled, disable it and clear the date. If it's disabled, enable it and set the date to today.
     if (dueDateEnabled) {
       setDueDate(null);
       setFormData({
@@ -225,8 +233,10 @@ function Generate() {
     setDueDateEnabled(!dueDateEnabled);
   };
 
+  //Submit Payee handler
   const handleSubmitPayeeDialog = (e, payeeData) => {
     e.preventDefault();
+    //Check if all required inputs are filled
     if (
       !payeeData.payToName ||
       !payeeData.address.addressFirst ||
@@ -248,6 +258,7 @@ function Generate() {
       const isExistingPayee = payees.some(
         (payee) => payee.label === payeeData.payToName
       );
+      //Check if there is already existing payee with the same name
       if (isExistingPayee) {
         toast.error("There is already existing payee with the same name.", {
           position: "top-right",
@@ -271,8 +282,10 @@ function Generate() {
     }
   };
 
+  //Submit Payer handler
   const handleSubmitPayerDialog = (e, payerData) => {
     e.preventDefault();
+    //Check if all required inputs are filled
     if (
       !payerData.billToName ||
       !payerData.address.addressFirst ||
@@ -294,6 +307,7 @@ function Generate() {
       const isExistingPayer = payers.some(
         (payer) => payer.label === payerData.billToName
       );
+      //Check if there is already existing payer with the same name
       if (isExistingPayer) {
         toast.error("There is already existing payer with the same name.", {
           position: "top-right",
@@ -317,8 +331,10 @@ function Generate() {
     }
   };
 
+  //Submit Item handler
   const handleSubmitItemDialog = (e, itemData) => {
     e.preventDefault();
+    //Check if all required inputs are filled
     if (!itemData.itemName || !itemData.itemPrice) {
       toast.error("Please fill out all required inputs.", {
         position: "top-right",
@@ -334,6 +350,7 @@ function Generate() {
       const isExistingItem = items.some(
         (item) => item.label === itemData.itemName
       );
+      //Check if there is already existing item with the same name
       if (isExistingItem) {
         toast.error("There is already existing item with the same name.", {
           position: "top-right",
@@ -357,7 +374,9 @@ function Generate() {
     }
   };
 
+  //Remove Item handler
   const handleItemsRemove = (dataType, dataToRemove) => {
+    //Check which data type is being removed
     if (dataType === "Payees") {
       const updatedData = payees.filter((item) => item.label !== dataToRemove);
       setPayees([...updatedData]);
@@ -374,6 +393,7 @@ function Generate() {
     setModifyOpen(false);
   };
 
+  //Change Quantity handler
   const handleQuantityUpdate = (itemLabel, newQuantity) => {
     setFormData((prevFormData) => {
       const updatedData = prevFormData.items.map((item) => {
@@ -390,10 +410,12 @@ function Generate() {
     });
   };
 
+  //Update Cookies
   const updateCookies = (type, data) => {
     Cookies.set(type, JSON.stringify(data));
   };
 
+  //Select Change handlers
   const handlePayeeSelectChange = (e) => {
     setFormData({
       ...formData,
@@ -401,7 +423,6 @@ function Generate() {
       payToAddress: e.value.address,
     });
   };
-
   const handlePayerSelectChange = (e) => {
     setFormData({
       ...formData,
@@ -409,7 +430,6 @@ function Generate() {
       billToAddress: e.value.address,
     });
   };
-
   const handleItemsSelectChange = (e) => {
     const selectedItems = e.map((item) => item.value);
     setFormData({
@@ -417,7 +437,6 @@ function Generate() {
       items: selectedItems,
     });
   };
-
   const handleCurrencySelectChange = (e) => {
     setFormData({
       ...formData,
@@ -425,19 +444,21 @@ function Generate() {
     });
   };
 
+  //Open Preview on mobile handler
   const handleOpenPreview = () => {
     setPreviewOpen(true);
   };
 
+  //Close Preview on mobile handler
   const handleClosePreview = () => {
     setPreviewOpen(false);
   };
 
-  // Register font
+  // Register font for react-pdf
   Font.register({ family: "Inter", src: InterRegular });
   Font.register({ family: "Inter-600", src: InterMedium });
 
-  //Render
+  //Render react-pdf
   const renderPdf = () => (
     <Document>
       <Page
@@ -552,6 +573,7 @@ function Generate() {
     </Document>
   );
 
+  //Styles for react-pdf
   const styles = StyleSheet.create({
     title: {
       fontFamily: "Inter-600",
@@ -624,6 +646,7 @@ function Generate() {
     },
   });
 
+  //Form validation error message
   const validateForm = () => {
     toast.error(
       "Please fill-out the form and provide all necessary information.",
@@ -685,7 +708,7 @@ function Generate() {
                     dropdownMode="select"
                     todayButton="Today"
                     onChange={(date) => handleDateChange(date)}
-                    onFocus={e => e.target.blur()}
+                    onFocus={(e) => e.target.blur()}
                   />
                   <Calendar />
                 </div>
@@ -709,7 +732,7 @@ function Generate() {
                     todayButton="Today"
                     onChange={(date) => handleDueDateChange(date)}
                     disabled={!dueDateEnabled}
-                    onFocus={e => e.target.blur()}
+                    onFocus={(e) => e.target.blur()}
                   />
                   <Calendar />
                 </div>

@@ -1,3 +1,4 @@
+//Components
 import PostList from "../components/PostList";
 
 function Docs() {

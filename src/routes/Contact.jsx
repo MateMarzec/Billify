@@ -1,24 +1,32 @@
+//Libraries
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import { Mail } from "feather-icons-react";
 import { toast } from "react-toastify";
-import ContactUs from "../assets/contact.jpg";
-import classes from "./Contact.module.css";
+import { Mail } from "feather-icons-react";
 import { Send, User } from "feather-icons-react/build/IconComponents";
 
+//Styles
+import classes from "./Contact.module.css";
+
+//Assets
+import ContactUs from "../assets/contact.jpg";
+
 function Contact() {
+  //State for the form inputs
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessageBody] = useState("");
   const [sent, setSent] = useState(false);
 
+  //Function to handle the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Email validation regex pattern
     const emailRegex = /^\S+@\S+\.\S+$/;
 
+    // Check if the email is valid
     if (!emailRegex.test(email)) {
       // Display an error message or handle the validation error in an appropriate way
       toast.error(
@@ -37,6 +45,7 @@ function Contact() {
       return;
     }
 
+    //EmailJS template parameters
     const templateParams = {
       from_name: name,
       from_email: email,
@@ -44,6 +53,7 @@ function Contact() {
       message,
     };
 
+    //Send the email
     emailjs
       .send(
         "service_8yaldv7",
@@ -82,14 +92,13 @@ function Contact() {
     setSent(true);
   };
 
+  //Form Input change handlers
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-
   const handleBodyChange = (e) => {
     setMessageBody(e.target.value);
   };

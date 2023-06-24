@@ -1,7 +1,12 @@
-import { ArrowLeft } from "feather-icons-react/build/IconComponents";
-import Payment from "../assets/payment.jpg";
-import classes from "./PageNotFound.module.css";
+//Libraries
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "feather-icons-react/build/IconComponents";
+
+//Styles
+import classes from "./PageNotFound.module.css";
+
+//Assets
+import Payment from "../assets/payment.jpg";
 
 function PageNotFound() {
   return (
