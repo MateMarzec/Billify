@@ -176,7 +176,7 @@
     .rightSide div:nth-child(2) {
         width: 288px;
         height: 350px;
-        border-radius: 0 96px 0 96px;
+        border-radius: 96px 0 96px 0;
         bottom: 16px;
     }
 
