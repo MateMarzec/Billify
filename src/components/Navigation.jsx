@@ -1,16 +1,24 @@
+//Libraries
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, ArrowRight, X } from "feather-icons-react/build/IconComponents";
-import Logo from "/logo.svg";
+
+//Styles
 import classes from "./Navigation.module.css";
 
+//Assets
+import Logo from "/logo.svg";
+
 function Navigation() {
+  //State for mobile menu
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  //Handle mobile menu toggle
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  //Hide mobile menu on link click
   const handleMobileLinkClick = () => {
     setMobileMenuOpen(false);
   };

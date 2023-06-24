@@ -1,5 +1,8 @@
-import { Globe, Home, User, X } from "feather-icons-react/build/IconComponents";
+//Libraries
 import { useState, useEffect } from "react";
+import { X } from "feather-icons-react/build/IconComponents";
+
+//Styles
 import classes from "./ModifyDetails.module.css";
 
 function ModifyDetails({
@@ -9,17 +12,18 @@ function ModifyDetails({
   onRemove,
   onQuantityUpdate,
 }) {
+  //State for the form inputs
   const [modifyData, setModifyData] = useState([]);
 
+  //Listen to changes in dataToModify
   useEffect(() => {
     setModifyData(dataToModify || []);
   }, [dataToModify]);
 
-  // Check if the component is currently being rendered
+  //If form is open, render the form
   if (!isOpen) {
     return null;
   } else {
-    // Render the component without any state updates
     return (
       <div className={classes.modifyData}>
         <div className="modal-backdrop" onClick={onClose}></div>

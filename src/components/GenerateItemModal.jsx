@@ -1,8 +1,9 @@
-import { Edit2 } from "feather-icons-react";
-import { DollarSign, Hash } from "feather-icons-react/build/IconComponents";
+//Libraries
 import { useState } from "react";
+import { DollarSign, Hash } from "feather-icons-react/build/IconComponents";
 
 function GenerateItemModal({ isOpen, onClose, onSubmit }) {
+  //State for the form inputs
   const [itemData, setItemData] = useState({
     itemName: "",
     itemDescription: "",
@@ -10,6 +11,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     itemQuantity: 1,
   });
 
+  //Form inputs change handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItemData((prevState) => ({
@@ -18,6 +20,7 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
     }));
   };
 
+  //If form is open, render the form
   if (!isOpen) {
     return null;
   }
@@ -30,7 +33,9 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="itemName">Item Name<span className="required">*Required</span></label>
+            <label htmlFor="itemName">
+              Item Name<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -57,7 +62,9 @@ function GenerateItemModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="itemPrice">Item Price<span className="required">*Required</span></label>
+            <label htmlFor="itemPrice">
+              Item Price<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="number"

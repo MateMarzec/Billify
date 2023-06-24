@@ -1,8 +1,9 @@
-import { Edit2 } from "feather-icons-react";
-import { Globe, Home, User } from "feather-icons-react/build/IconComponents";
+//Libraries
 import { useState } from "react";
+import { Globe, Home, User } from "feather-icons-react/build/IconComponents";
 
 function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
+  //State for the form inputs
   const [payerData, setPayerData] = useState({
     billToName: "",
     address: {
@@ -14,6 +15,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
     },
   });
 
+  //Form Inputs change handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name.startsWith("address.")) {
@@ -33,6 +35,7 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
     }
   };
 
+  //If form is open, render the form
   if (!isOpen) {
     return null;
   }
@@ -45,7 +48,10 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
         <p>Please provide following details:</p>
         <form>
           <div>
-            <label htmlFor="payerName">Full Name or Company Name<span className="required">*Required</span></label>
+            <label htmlFor="payerName">
+              Full Name or Company Name
+              <span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -59,7 +65,9 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="firstLine">Address First Line<span className="required">*Required</span></label>
+            <label htmlFor="firstLine">
+              Address First Line<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -86,7 +94,9 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="postCode">Post Code<span className="required">*Required</span></label>
+            <label htmlFor="postCode">
+              Post Code<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -100,7 +110,9 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="city">City<span className="required">*Required</span></label>
+            <label htmlFor="city">
+              City<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -114,7 +126,9 @@ function GeneratePayerModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
           <div>
-            <label htmlFor="country">Country<span className="required">*Required</span></label>
+            <label htmlFor="country">
+              Country<span className="required">*Required</span>
+            </label>
             <div className="input-wrapper">
               <input
                 type="text"

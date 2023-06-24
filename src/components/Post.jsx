@@ -1,7 +1,10 @@
+//Libraries
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import classes from "./Post.module.css";
 import { Book } from "feather-icons-react/build/IconComponents";
+
+//Styles
+import classes from "./Post.module.css";
 
 function Post({ type, url, name, desc }) {
   return (

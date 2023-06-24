@@ -1,10 +1,17 @@
+//Libraries
 import { motion } from "framer-motion";
-import Post from "./Post";
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "feather-icons-react/build/IconComponents";
+
+//Components
+import Post from "./Post";
+
+//Styles
 import classes from "./PostList.module.css";
+
+//Assets
 import articlesList from "../assets/articles.json";
 import docsList from "../assets/docs.json";
-import { ArrowLeft } from "feather-icons-react/build/IconComponents";
 
 function PostList({ type }) {
   return (

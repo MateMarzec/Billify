@@ -1,22 +1,27 @@
+//Libraries
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import { Search } from "feather-icons-react";
 import { toast } from "react-toastify";
-import classes from "./Newsletter.module.css";
 import { Mail } from "feather-icons-react/build/IconComponents";
 
+//Styles
+import classes from "./Newsletter.module.css";
+
 function Newsletter() {
+  //State for the email input & submitted status
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  //Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Email validation regex pattern
+    //Email validation regex pattern
     const emailRegex = /^\S+@\S+\.\S+$/;
 
+    //Check if email is valid
     if (!emailRegex.test(email)) {
-      // Display an error message or handle the validation error in an appropriate way
+      //If email is invalid, show error toast
       toast.error(
         "Invalid Email Address. Please enter a valid email address.",
         {
@@ -33,6 +38,7 @@ function Newsletter() {
       return;
     }
 
+    //Send email
     emailjs
       .send(
         "service_8yaldv7",
@@ -73,6 +79,7 @@ function Newsletter() {
     setSubmitted(true);
   };
 
+  //Handle email input change
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -113,4 +120,5 @@ function Newsletter() {
     </aside>
   );
 }
+
 export default Newsletter;

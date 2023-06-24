@@ -12,7 +12,6 @@ import classes from "./Footer.module.css";
 //Assets
 import Logo from "/logo.svg";
 
-
 function Footer() {
   return (
     <div>
