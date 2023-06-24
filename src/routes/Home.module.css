@@ -94,7 +94,7 @@
     width: 60%;
     height: 80%;
     overflow: hidden;
-    border-radius: 0 96px 0 96px;
+    border-radius: 0 48px 0 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +111,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    border-radius: 96px 0 96px 0;
+    border-radius: 0 48px 0 48px;
     z-index: -1;
 }
 
@@ -215,11 +215,13 @@
     .rightSide div:nth-child(1) {
         width: 392px;
         height: 520px;
+        border-radius: 0 96px 0 96px;
     }
 
     .rightSide div:nth-child(2) {
         width: 288px;
         height: 350px;
+        border-radius: 0 96px 0 96px;
         bottom: 16px;
     }
 
