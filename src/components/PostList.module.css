@@ -4,7 +4,8 @@
     flex-direction: column;
     margin: 0 auto;
 }
-.container h1{
+
+.container h1 {
     margin-bottom: 24px;
     text-align: center;
     font-weight: 600;
@@ -14,16 +15,18 @@
     color: var(--primary-black);
 }
 
-.container > button{
+.container>button {
     margin: auto;
 }
-.container > button > a{
+
+.container>button>a {
     text-decoration: none;
     color: var(--primary-white);
     display: flex;
     align-items: center;
     gap: 4px
 }
+
 @media (min-width: 992px) {
     .container h1 {
         font-size: 48px;

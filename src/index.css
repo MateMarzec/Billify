@@ -1,6 +1,7 @@
 /* General */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+/* General */
 * {
     margin: 0;
     padding: 0;
@@ -146,7 +147,7 @@ button:disabled:hover {
     transform: none;
 }
 
-button > a{
+button>a {
     width: 100%;
     height: 100%;
     display: flex;
@@ -222,6 +223,7 @@ textarea:active {
     border: 1px solid var(--alpha-1200);
 }
 
+/* Modals */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -289,6 +291,7 @@ textarea:active {
     gap: 8px;
 }
 
+/* Selects */
 .select__control,
 .select__menu {
     border: 1px solid var(--alpha-500) !important;
@@ -310,6 +313,7 @@ textarea:active {
     overflow: hidden;
 }
 
+/* Required Info */
 .required {
     font-weight: 400;
     font-size: 12px;

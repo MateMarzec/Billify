@@ -7,14 +7,15 @@
     gap: 32px;
 }
 
-.postDetails a{
+.postDetails a {
     width: fit-content;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: var(--primary-black);
 }
-.postDetails a svg g{
+
+.postDetails a svg g {
     color: var(--primary-black);
 }
 

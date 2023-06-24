@@ -22,7 +22,8 @@
     letter-spacing: -0.021em;
     color: var(--grey-1200);
 }
-.newsletter p:last-child{
+
+.newsletter p:last-child {
     text-align: right;
 }
 
@@ -43,7 +44,7 @@
     height: 40px;
 }
 
-.newsletterEmail .disabled:hover{
+.newsletterEmail .disabled:hover {
     transform: none !important;
     background-color: var(--grass-1000) !important;
     cursor: default !important;

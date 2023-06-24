@@ -1,6 +1,11 @@
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .nav {
@@ -101,22 +106,22 @@
     gap: 32px;
 }
 
-.containerMobile > svg{
+.containerMobile>svg {
     position: absolute;
     right: 16px;
     top: 22px;
 }
 
-.containerMobile > a {
+.containerMobile>a {
     transition: 0.25s ease all;
     color: var(--alpha-800);
 }
 
-.containerMobile > a:hover {
+.containerMobile>a:hover {
     color: var(--alpha-1200);
 }
 
-.openContainerMobile{
+.openContainerMobile {
     display: flex;
     animation: fadeIn 1s;
     animation-iteration-count: 1;
