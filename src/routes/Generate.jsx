@@ -52,7 +52,7 @@ function Generate() {
   //Currency Options
   const currency = [
     { value: "$", label: "British Pounds (GBP)" },
-    { value: "PLN", label: "Polish Zloty (PLN)" },
+    { value: "zł", label: "Polish Zloty (ZŁ)" },
     { value: "£", label: "US Dollars (USD)" },
   ];
 
