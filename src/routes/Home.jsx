@@ -33,7 +33,7 @@ function Home() {
             <h1>Create invoice at lighting speed</h1>
             <p>
               Sick of manual invoice creation? Billify can generate them at
-              lighting speed.
+              lightning speed.
             </p>
             <div className={classes.btnGroup}>
               <button className="primary lg" type="button">
